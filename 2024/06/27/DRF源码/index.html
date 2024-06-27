@@ -6,13 +6,15 @@
   
   <title>Snail Book</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="个人文档">
-<meta property="og:type" content="website">
+  <meta name="description" content="Django CBV的源码解析1234567891011121314151617181920212223242526272829&#x27;&#x27;&#x27;&#x27;class VulnView(View):    def get(self, request):        return HttpResponse(&quot;get&quot;)    def post(self, r">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Snail Book">
-<meta property="og:url" content="https://champion-yang.github.io/index.html">
+<meta property="og:url" content="https://champion-yang.github.io/2024/06/27/DRF%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="个人文档">
+<meta property="og:description" content="Django CBV的源码解析1234567891011121314151617181920212223242526272829&#x27;&#x27;&#x27;&#x27;class VulnView(View):    def get(self, request):        return HttpResponse(&quot;get&quot;)    def post(self, r">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-27T09:19:49.051Z">
+<meta property="article:modified_time" content="2024-06-27T09:27:03.691Z">
 <meta property="article:author" content="Sanil">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
@@ -74,105 +76,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-内容大纲" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/27/%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2/" class="article-date">
-  <time class="dt-published" datetime="2024-06-27T09:20:06.073Z" itemprop="datePublished">2024-06-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>标题：Django DRF 源码分享与实践应用</p>
-<p>一、引言</p>
-<ul>
-<li>简介：Django DRF 的定义和作用</li>
-<li>为何选择 Django DRF：行业中的应用案例</li>
-</ul>
-<p>二、Django DRF 基础</p>
-<ul>
-<li>Django DRF 的架构概述</li>
-<li>核心组件介绍<ul>
-<li>序列化器（Serializers）</li>
-<li>视图（Views）</li>
-<li>路由（Routers）</li>
-<li>认证系统（Authentication）</li>
-</ul>
-</li>
-<li>请求和响应流程解析</li>
-</ul>
-<p>三、深入源码分析</p>
-<ul>
-<li>源码结构概览</li>
-<li>关键代码解读<ul>
-<li>视图处理机制</li>
-<li>序列化器工作机制</li>
-<li>认证和权限控制实现</li>
-</ul>
-</li>
-<li>性能优化策略<ul>
-<li>数据库查询优化</li>
-<li>缓存机制</li>
-</ul>
-</li>
-</ul>
-<p>四、实践应用案例</p>
-<ul>
-<li>项目准备和环境设置</li>
-<li>创建一个简单的API示例<ul>
-<li>定义模型</li>
-<li>编写序列化器</li>
-<li>实现视图和路由</li>
-</ul>
-</li>
-<li>认证和权限配置实践</li>
-<li>测试和部署</li>
-</ul>
-<p>五、常见问题与解决方案</p>
-<ul>
-<li>跨域请求处理</li>
-<li>API版本管理</li>
-<li>安全性问题及应对措施</li>
-</ul>
-<p>六、扩展与定制</p>
-<ul>
-<li>Django DRF 扩展点介绍</li>
-<li>如何根据项目需求定制功能</li>
-<li>第三方包和中间件的整合使用</li>
-</ul>
-<p>七、总结与展望</p>
-<ul>
-<li>Django DRF 的最佳实践分享</li>
-<li>Django DRF 的未来发展方向</li>
-<li>社区和资源推荐</li>
-</ul>
-<p>八、Q&amp;A环节</p>
-<ul>
-<li>解答参与者的问题</li>
-<li>收集反馈，共同探讨Django DRF的应用经验</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://champion-yang.github.io/2024/06/27/%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2/" data-id="clxx2004b00026wvh5gb583i0" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-DRF源码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-DRF源码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/27/DRF%E6%BA%90%E7%A0%81/" class="article-date">
   <time class="dt-published" datetime="2024-06-27T09:19:49.051Z" itemprop="datePublished">2024-06-27</time>
@@ -214,100 +118,28 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-DRF源码解析与实践应用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2024-06-27T09:18:01.000Z" itemprop="datePublished">2024-06-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2024/06/27/%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/">DRF源码解析与实践应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
+          (no title)
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://champion-yang.github.io/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/" data-id="clxx1xbq500006wvh6ypg23tb" data-title="DRF源码解析与实践应用" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
+      </div>
+    </a>
+  
+  
+    <a href="/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">DRF源码解析与实践应用</div>
+    </a>
+  
+</nav>
+
   
 </article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/27/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2024-06-27T08:46:47.594Z" itemprop="datePublished">2024-06-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://champion-yang.github.io/2024/06/27/hello-world/" data-id="clxx0v89e0000esvha2q9cfq0" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
