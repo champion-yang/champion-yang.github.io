@@ -1,0 +1,5 @@
+site_name: Snail Book
+nav:
+    - Home: index.md
+    - About: about.md
+theme: readthedocs
