@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://champion-yang.github.io/fonts/README.html</loc>
+    
+    <lastmod>2024-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://champion-yang.github.io/2024/06/27/linux/</loc>
     
     <lastmod>2024-06-27</lastmod>
@@ -30,24 +39,6 @@
   
   <url>
     <loc>https://champion-yang.github.io/page1/index.html</loc>
-    
-    <lastmod>2024-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://champion-yang.github.io/2024/06/27/%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2/</loc>
-    
-    <lastmod>2024-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://champion-yang.github.io/2024/06/27/DRF%E6%BA%90%E7%A0%81/</loc>
     
     <lastmod>2024-06-27</lastmod>
     
