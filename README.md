@@ -9,4 +9,8 @@ snail blog
 ```shell
 mkdocs new my-project
 cd my-project
+mkdocs serve
+mkdocs build
+
+将 site 下的所有内容复制到 git 仓库下提交到 master 即可
 ```
