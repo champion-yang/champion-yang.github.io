@@ -1,4 +1,8 @@
-https://champion-yang.github.io/fonts/README.html
+https://champion-yang.github.io/book/index.html
+https://champion-yang.github.io/lang/index.html
+https://champion-yang.github.io/tags/index.html
+https://champion-yang.github.io/categories/index.html
+https://champion-yang.github.io/about/index.html
 https://champion-yang.github.io/2024/06/27/linux/
 https://champion-yang.github.io/page2/index.html
 https://champion-yang.github.io/2024/06/27/test1/
