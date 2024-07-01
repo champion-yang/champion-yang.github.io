@@ -2,7 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://champion-yang.github.io/book/index.html</loc>
+    <loc>https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2024-07-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/2024/06/28/%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E5%93%88/</loc>
+    
+    <lastmod>2024-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/2024/06/28/hexo%E5%BB%BA%E7%AB%99/</loc>
+    
+    <lastmod>2024-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/books/index.html</loc>
     
     <lastmod>2024-06-28</lastmod>
     
@@ -56,25 +83,7 @@
   </url>
   
   <url>
-    <loc>https://champion-yang.github.io/page2/index.html</loc>
-    
-    <lastmod>2024-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://champion-yang.github.io/2024/06/27/test1/</loc>
-    
-    <lastmod>2024-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://champion-yang.github.io/page1/index.html</loc>
     
     <lastmod>2024-06-27</lastmod>
     
@@ -103,7 +112,7 @@
 
   <url>
     <loc>https://champion-yang.github.io/</loc>
-    <lastmod>2024-06-28</lastmod>
+    <lastmod>2024-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

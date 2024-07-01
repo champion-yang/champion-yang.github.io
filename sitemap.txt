@@ -1,12 +1,13 @@
-https://champion-yang.github.io/book/index.html
+https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/
+https://champion-yang.github.io/2024/06/28/%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E5%93%88/
+https://champion-yang.github.io/2024/06/28/hexo%E5%BB%BA%E7%AB%99/
+https://champion-yang.github.io/books/index.html
 https://champion-yang.github.io/lang/index.html
 https://champion-yang.github.io/tags/index.html
 https://champion-yang.github.io/categories/index.html
 https://champion-yang.github.io/about/index.html
 https://champion-yang.github.io/2024/06/27/linux/
-https://champion-yang.github.io/page2/index.html
 https://champion-yang.github.io/2024/06/27/test1/
-https://champion-yang.github.io/page1/index.html
 https://champion-yang.github.io/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/
 https://champion-yang.github.io/2024/06/27/hello-world/
 https://champion-yang.github.io/
