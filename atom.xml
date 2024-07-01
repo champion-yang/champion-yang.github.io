@@ -6,7 +6,7 @@
   <link href="https://champion-yang.github.io/atom.xml" rel="self"/>
   
   <link href="https://champion-yang.github.io/"/>
-  <updated>2024-07-01T03:37:42.275Z</updated>
+  <updated>2024-07-01T10:25:57.738Z</updated>
   <id>https://champion-yang.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 通过 brew 安装 redis，搭建 redis 集群</title>
+    <link href="https://champion-yang.github.io/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/"/>
+    <id>https://champion-yang.github.io/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/</id>
+    <published>2024-07-01T10:05:47.000Z</published>
+    <updated>2024-07-01T10:25:57.738Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇通过灵魂三问来探究 redis 集群：</p><ul><li>是什么？</li><li>为什么？</li><li>怎么做？</li></ul><h2 id="一、对集群的初步了解"><a href="#一、对集群的初步了解" class="headerlink" title="一、对集群的初步了解"></a>一、对集群的初步了解</h2><p>todo。。。</p><h2 id="二、为什么要搭建集群"><a href="#二、为什么要搭建集群" class="headerlink" title="二、为什么要搭建集群"></a>二、为什么要搭建集群</h2><p>todo。。。</p><h2 id="三、如何搭建-redis-集群"><a href="#三、如何搭建-redis-集群" class="headerlink" title="三、如何搭建 redis 集群"></a>三、如何搭建 redis 集群</h2><h3 id="1-redis-安装，查看redis安装路径"><a href="#1-redis-安装，查看redis安装路径" class="headerlink" title="1.redis 安装，查看redis安装路径"></a>1.redis 安装，查看redis安装路径</h3><ul><li>安装</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure><ul><li>redis.conf 路径：&#x2F;opt&#x2F;homebrew&#x2F;etc&#x2F;redis.conf</li></ul><p>ps: 这里路径及查找比较麻烦，<code>vim /opt/homebrew/Cellar/redis/7.0.4/homebrew.mxcl.redis.plist</code><br><img src="/../images/redis/redis01.png" alt="image" title="xxx"></p><h3 id="2-集群环境配置"><a href="#2-集群环境配置" class="headerlink" title="2.集群环境配置"></a>2.集群环境配置</h3><ul><li>mkdir 以下目录，</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/homebrew/etc/redis.conf /usr/local/etc/redis/cluster/7000/7000.conf</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-------------- 修改 7000.conf ，其他文件类似 ----------</span><br><span class="line">port 7000                                     # Redis 节点的端口号</span><br><span class="line">cluster-enabled yes                           # 实例以集群模式运行</span><br><span class="line">cluster-config-file nodes-7000.conf           # 节点配置文件路径</span><br><span class="line">cluster-node-timeout 5000                     # 节点间通信的超时时间</span><br><span class="line">appendonly yes                                # 数据持久化</span><br><span class="line">-----------------------------------------</span><br></pre></td></tr></table></figure><p>集群目录结构</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc</span><br><span class="line">`-- redis</span><br><span class="line">    `-- cluster</span><br><span class="line">        |-- 7000</span><br><span class="line">        |   `-- 7000.conf</span><br><span class="line">        |-- 7001</span><br><span class="line">        |   `-- 7001.conf</span><br><span class="line">        |-- 7002</span><br><span class="line">        |   `-- 7002.conf</span><br><span class="line">        |-- 7003</span><br><span class="line">        |   `-- 7003.conf</span><br><span class="line">        |-- 7004</span><br><span class="line">        |   `-- 7004.conf</span><br><span class="line">        `-- 7005</span><br><span class="line">            `-- 7005.conf</span><br></pre></td></tr></table></figure><p>启动 redis 的六个节点：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/local/etc/redis/cluster/7000/7000.conf &amp;</span><br><span class="line">redis-server /usr/local/etc/redis/cluster/7001/7001.conf &amp;</span><br><span class="line">其他依次顺延</span><br></pre></td></tr></table></figure><p>查看启动状态：<br><img src="/../images/redis/redis02.png" alt="image" title="xxx"></p><p>查看版本号：<br>1、启动服务端：redis-server<br>2、启动客户端：redis-cli<br>3、客户端输入：info</p><p>创建集群（redis 5 和redis 7 创建集群的命令不一致，示例是 redis 7）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster create  --cluster-replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre></td></tr></table></figure><p><img src="/../images/redis/redis03.png" alt="image" title="xxx"></p><p>warning：不要将主从数据库放在同一台机器上，避免宕机数据丢失<br>M：master 主节点<br>S：slave 从节点<br>三主三从<br>7000\7001\7002 主节点<br>7003、7004、7005 从节点</p><h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p><img src="/../images/redis/redis04.png" alt="image" title="xxx"><br>集群搭建成功</p><p>下线一个主节点：<br><img src="/../images/redis/redis05.png" alt="image" title="xxx"></p><p>查看节点状态：<br><img src="/../images/redis/redis06.png" alt="image" title="xxx"><br>这个时间 7002 节点是 fail 状态，并且 7004 成为了新的 master 节点</p><p>下线一个从节点 7005<br><img src="/../images/redis/redis07.png" alt="image" title="xxx"><br><img src="/../images/redis/redis08.png" alt="image" title="xxx"></p><p>上线一个从节点 7005</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/local/etc/redis/cluster/7005/7005.conf &amp;</span><br></pre></td></tr></table></figure><p><img src="/../images/redis/redis09.png" alt="image" title="xxx"></p><p>上线一个主节点 7002<br>这个时候已经有三个主节点了<br><img src="/../images/redis/redis10.png" alt="image" title="xxx"><br>这个时候 7002 上线成功，不过成为了 从节点</p><h2 id="五、知识点"><a href="#五、知识点" class="headerlink" title="五、知识点"></a>五、知识点</h2><p>集群节点状态说明</p><ul><li>主节点<ul><li>主节点存在hash slots,且主节点的hash slots 没有交叉<br>  主节点不能删除</li><li>一个主节点可以有多个从节点</li><li>主节点宕机时多个副本之间自动选举主节点</li></ul></li><li>从节点<ul><li>从节点没有hash slots</li><li>从节点可以删除</li></ul></li></ul><h2 id="六、参考"><a href="#六、参考" class="headerlink" title="六、参考"></a>六、参考</h2><p><a href="https://segmentfault.com/a/1190000022808576%E3%80%8C%E5%BF%85%E7%9C%8B%E3%80%8D">https://segmentfault.com/a/1190000022808576「必看」</a></p><p><a href="http://redisdoc.com/topic/cluster-tutorial.html#id2%E3%80%8C%E5%BF%85%E7%9C%8B%E3%80%8D">http://redisdoc.com/topic/cluster-tutorial.html#id2「必看」</a></p><p><a href="https://blog.csdn.net/qq_43439968/article/details/109882660">https://blog.csdn.net/qq_43439968/article/details/109882660</a> </p><p><a href="https://zhuanlan.zhihu.com/p/59172042">https://zhuanlan.zhihu.com/p/59172042</a></p><p><a href="https://blog.csdn.net/qq_29329241/article/details/113326613">https://blog.csdn.net/qq_29329241/article/details/113326613</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;本篇通过灵魂三问来探究 redis 集群：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是什么？&lt;/li&gt;
+&lt;li&gt;为什么？&lt;/li&gt;
+&lt;li&gt;怎么做？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;一、对集群的初步了解&quot;&gt;&lt;a href=&quot;#一、对集群的初步了解&quot; class=&quot;headerlin</summary>
+      
+    
+    
+    
+    
+    <category term="Redis" scheme="https://champion-yang.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis缓存一致性</title>
+    <link href="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/"/>
+    <id>https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/</id>
+    <published>2024-07-01T09:55:31.000Z</published>
+    <updated>2024-07-01T10:07:41.077Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="redis-缓存一致性"><a href="#redis-缓存一致性" class="headerlink" title="redis 缓存一致性"></a>redis 缓存一致性</h1><p>在项目中发现大家使用 redis 缓存，不太注重一致性的设计，所以整理本文，希望能给大家一些帮助</p><img src="/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png" class="" title="xxx"><h2 id="一、缓存的设计"><a href="#一、缓存的设计" class="headerlink" title="一、缓存的设计"></a>一、缓存的设计</h2><p>首先，读缓存；<br>如果缓存里没有值，那就读取数据库的值；<br>同时把这个值写进缓存中。</p><h2 id="二、数据一致性问题的出现"><a href="#二、数据一致性问题的出现" class="headerlink" title="二、数据一致性问题的出现"></a>二、数据一致性问题的出现</h2><p>双更新模式：操作不合理，导致数据一致性问题</p><p>比如我要更新一个值，首先刷了缓存，然后把数据库也更新了。但过程中，更新数据库可能会失败，发生了回滚。所以，最后“缓存里的数据”和“数据库的数据”就不一样了，也就是出现了数据一致性问题。</p><p>你或许会说：我先更新数据库，再更新缓存不就行了？</p><p>这依然会有问题。</p><p>考虑到下面的场景：操作 A 更新 a 的值为 1，操作 B 更新 a 的值为 2。由于数据库和 Redis 的操作，并不是原子的，它们的执行时长也不是可控制的。当两个请求的时序发生了错乱，就会发生缓存不一致的情况。</p><h2 id="三、缓存一致性的解决思路"><a href="#三、缓存一致性的解决思路" class="headerlink" title="三、缓存一致性的解决思路"></a>三、缓存一致性的解决思路</h2><h3 id="1-常用方法：先更新-db，后删除-cache"><a href="#1-常用方法：先更新-db，后删除-cache" class="headerlink" title="1.常用方法：先更新 db，后删除 cache"></a>1.常用方法：先更新 db，后删除 cache</h3><p>数据的读取过程，规则是“先读 cache，再读 db”，详细步骤如下：</p><ul><li>每次读取数据，都从 cache 里读；</li><li>如果读到了，则直接返回，称作 cache hit；</li><li>如果读不到 cache 的数据，则从 db 里面捞一份，称作 cache miss；</li><li>将读取到的数据塞入到缓存中，下次读取时，就可以直接命中。</li></ul><p>写请求，规则是“先更新 db，再删除缓存”，详细步骤如下：</p><ul><li>将变更写入到数据库中；</li><li>删除缓存里对应的数据。</li></ul><h3 id="2-高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）"><a href="#2-高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）" class="headerlink" title="2.高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）"></a>2.高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）</h3><p>解决方案：</p><ul><li><p>延时双删：而假如我有一种机制，能够确保删除动作一定被执行，那就可以解决问题，起码能缩小数据不一致的时间窗口。常用的方法就是延时双删，依然是先更新再删除，唯一不同的是：我们把这个删除动作，在不久之后再执行一次，比如 5 秒之后。这种方案需要经过技术选型，跟着项目走，可以利用 mq，延时队列等。</p></li><li><p>闪电缓存：把缓存的失效时间设置非常短，比如 3～4 秒。一旦失效，就会再次去数据库读取最新数据到缓存。但这种方式，在非常高的并发下，同一时间对某个 key 的请求击穿到 DB，会锁死数据库，所以很少用。</p></li></ul><h2 id="四、缓存击穿问题"><a href="#四、缓存击穿问题" class="headerlink" title="四、缓存击穿问题"></a>四、缓存击穿问题</h2><p>缓存击穿，指的是缓存中没有数据但数据库中有，由于同一时刻请求量特别大，但是没有读到缓存数据，就会一股脑涌入到数据库中读取，造成数据库假死。</p><p>任何删除缓存的动作都会造成缓存击穿。</p><p>所以我们上面一直说的是要删除缓存，但在极高并发下，你还不能乱删。<br>那么该问题如何解决呢？</p><ul><li>读操作互斥</li><li>集中更新</li><li>弱化数据库</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;redis-缓存一致性&quot;&gt;&lt;a href=&quot;#redis-缓存一致性&quot; class=&quot;headerlink&quot; title=&quot;redis 缓存一致性&quot;&gt;&lt;/a&gt;redis 缓存一致性&lt;/h1&gt;&lt;p&gt;在项目中发现大家使用 redis 缓存，不太注重一致性的设计，所以整</summary>
+      
+    
+    
+    
+    
+    <category term="Redis" scheme="https://champion-yang.github.io/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>DRF源码解析</title>

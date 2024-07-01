@@ -1,3 +1,5 @@
+https://champion-yang.github.io/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/
+https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/
 https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/
 https://champion-yang.github.io/2024/06/28/%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E5%93%88/
 https://champion-yang.github.io/2024/06/28/hexo%E5%BB%BA%E7%AB%99/
@@ -11,3 +13,4 @@ https://champion-yang.github.io/2024/06/27/test1/
 https://champion-yang.github.io/2024/06/27/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/
 https://champion-yang.github.io/2024/06/27/hello-world/
 https://champion-yang.github.io/
+https://champion-yang.github.io/tags/Redis/

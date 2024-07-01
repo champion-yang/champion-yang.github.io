@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://champion-yang.github.io/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/</loc>
+    <lastmod>2024-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/</loc>
+    <lastmod>2024-07-01</lastmod>
+  </url>
+  <url>
     <loc>https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
     <lastmod>2024-07-01</lastmod>
   </url>

@@ -17,21 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>linux | Hexo</title>
-  <meta name="description" content="linux如果做一个好的 linux er">
+  <title>redis缓存一致性 | Hexo</title>
+  <meta name="description" content="redis 缓存一致性在项目中发现大家使用 redis 缓存，不太注重一致性的设计，所以整理本文，希望能给大家一些帮助   一、缓存的设计首先，读缓存；如果缓存里没有值，那就读取数据库的值；同时把这个值写进缓存中。 二、数据一致性问题的出现双更新模式：操作不合理，导致数据一致性问题 比如我要更新一个值，首先刷了缓存，然后把数据库也更新了。但过程中，更新数据库可能会失败，发生了回滚。所以，最后“缓存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux">
-<meta property="og:url" content="https://champion-yang.github.io/2024/06/27/linux/index.html">
+<meta property="og:title" content="redis缓存一致性">
+<meta property="og:url" content="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="linux如果做一个好的 linux er">
+<meta property="og:description" content="redis 缓存一致性在项目中发现大家使用 redis 缓存，不太注重一致性的设计，所以整理本文，希望能给大家一些帮助   一、缓存的设计首先，读缓存；如果缓存里没有值，那就读取数据库的值；同时把这个值写进缓存中。 二、数据一致性问题的出现双更新模式：操作不合理，导致数据一致性问题 比如我要更新一个值，首先刷了缓存，然后把数据库也更新了。但过程中，更新数据库可能会失败，发生了回滚。所以，最后“缓存">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-27T10:05:40.000Z">
-<meta property="article:modified_time" content="2024-06-27T10:06:37.042Z">
+<meta property="og:image" content="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png">
+<meta property="article:published_time" content="2024-07-01T09:55:31.000Z">
+<meta property="article:modified_time" content="2024-07-01T10:07:41.077Z">
 <meta property="article:author" content="Sanil">
-<meta property="article:tag" content="技术">
+<meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://champion-yang.github.io/2024/06/27/linux/index.html">
+  <link rel="canonical" href="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Snail Book" type="application/atom+xml">
   
@@ -305,14 +307,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-linux" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-redis缓存一致性" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      linux
+      redis缓存一致性
     </h1>
   
 
@@ -320,29 +322,69 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/06/27/linux/" class="article-date">
-	  <time datetime="2024-06-27T10:05:40.000Z" itemprop="datePublished">2024-06-27</time>
+	<a href="/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/" class="article-date">
+	  <time datetime="2024-07-01T09:55:31.000Z" itemprop="datePublished">2024-07-01</time>
 	</a>
 </span>
         
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Redis/" rel="tag">Redis</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/06/27/linux/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 10(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 857(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><p>如果做一个好的 linux er</p>
+        <h1 id="redis-缓存一致性"><a href="#redis-缓存一致性" class="headerlink" title="redis 缓存一致性"></a>redis 缓存一致性</h1><p>在项目中发现大家使用 redis 缓存，不太注重一致性的设计，所以整理本文，希望能给大家一些帮助</p>
+<img src="/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png" class="" title="xxx">
+
+<h2 id="一、缓存的设计"><a href="#一、缓存的设计" class="headerlink" title="一、缓存的设计"></a>一、缓存的设计</h2><p>首先，读缓存；<br>如果缓存里没有值，那就读取数据库的值；<br>同时把这个值写进缓存中。</p>
+<h2 id="二、数据一致性问题的出现"><a href="#二、数据一致性问题的出现" class="headerlink" title="二、数据一致性问题的出现"></a>二、数据一致性问题的出现</h2><p>双更新模式：操作不合理，导致数据一致性问题</p>
+<p>比如我要更新一个值，首先刷了缓存，然后把数据库也更新了。但过程中，更新数据库可能会失败，发生了回滚。所以，最后“缓存里的数据”和“数据库的数据”就不一样了，也就是出现了数据一致性问题。</p>
+<p>你或许会说：我先更新数据库，再更新缓存不就行了？</p>
+<p>这依然会有问题。</p>
+<p>考虑到下面的场景：操作 A 更新 a 的值为 1，操作 B 更新 a 的值为 2。由于数据库和 Redis 的操作，并不是原子的，它们的执行时长也不是可控制的。当两个请求的时序发生了错乱，就会发生缓存不一致的情况。</p>
+<h2 id="三、缓存一致性的解决思路"><a href="#三、缓存一致性的解决思路" class="headerlink" title="三、缓存一致性的解决思路"></a>三、缓存一致性的解决思路</h2><h3 id="1-常用方法：先更新-db，后删除-cache"><a href="#1-常用方法：先更新-db，后删除-cache" class="headerlink" title="1.常用方法：先更新 db，后删除 cache"></a>1.常用方法：先更新 db，后删除 cache</h3><p>数据的读取过程，规则是“先读 cache，再读 db”，详细步骤如下：</p>
+<ul>
+<li>每次读取数据，都从 cache 里读；</li>
+<li>如果读到了，则直接返回，称作 cache hit；</li>
+<li>如果读不到 cache 的数据，则从 db 里面捞一份，称作 cache miss；</li>
+<li>将读取到的数据塞入到缓存中，下次读取时，就可以直接命中。</li>
+</ul>
+<p>写请求，规则是“先更新 db，再删除缓存”，详细步骤如下：</p>
+<ul>
+<li>将变更写入到数据库中；</li>
+<li>删除缓存里对应的数据。</li>
+</ul>
+<h3 id="2-高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）"><a href="#2-高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）" class="headerlink" title="2.高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）"></a>2.高并发的时候，后删缓存还是存在缓存不一致的问题（归根结底还是“删除操作”发生在“更新操作”之前）</h3><p>解决方案：</p>
+<ul>
+<li><p>延时双删：而假如我有一种机制，能够确保删除动作一定被执行，那就可以解决问题，起码能缩小数据不一致的时间窗口。常用的方法就是延时双删，依然是先更新再删除，唯一不同的是：我们把这个删除动作，在不久之后再执行一次，比如 5 秒之后。这种方案需要经过技术选型，跟着项目走，可以利用 mq，延时队列等。</p>
+</li>
+<li><p>闪电缓存：把缓存的失效时间设置非常短，比如 3～4 秒。一旦失效，就会再次去数据库读取最新数据到缓存。但这种方式，在非常高的并发下，同一时间对某个 key 的请求击穿到 DB，会锁死数据库，所以很少用。</p>
+</li>
+</ul>
+<h2 id="四、缓存击穿问题"><a href="#四、缓存击穿问题" class="headerlink" title="四、缓存击穿问题"></a>四、缓存击穿问题</h2><p>缓存击穿，指的是缓存中没有数据但数据库中有，由于同一时刻请求量特别大，但是没有读到缓存数据，就会一股脑涌入到数据库中读取，造成数据库假死。</p>
+<p>任何删除缓存的动作都会造成缓存击穿。</p>
+<p>所以我们上面一直说的是要删除缓存，但在极高并发下，你还不能乱删。<br>那么该问题如何解决呢？</p>
+<ul>
+<li>读操作互斥</li>
+<li>集中更新</li>
+<li>弱化数据库</li>
+</ul>
 
       
     </div>
@@ -352,7 +394,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://champion-yang.github.io/2024/06/27/linux/" title="linux" target="_blank" rel="external">https://champion-yang.github.io/2024/06/27/linux/</a>
+      <a href="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/" title="redis缓存一致性" target="_blank" rel="external">https://champion-yang.github.io/2024/07/01/redis缓存一致性/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -399,12 +441,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2024/06/28/hexo%E5%BB%BA%E7%AB%99/" title="hexo建站"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/" title="Mac 通过 brew 安装 redis，搭建 redis 集群"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2024/06/27/test1/" title="test1"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="DRF源码解析"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
