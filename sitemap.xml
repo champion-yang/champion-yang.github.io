@@ -130,7 +130,7 @@
 
   <url>
     <loc>https://champion-yang.github.io/</loc>
-    <lastmod>2024-07-01</lastmod>
+    <lastmod>2024-07-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -138,7 +138,7 @@
   
   <url>
     <loc>https://champion-yang.github.io/tags/Redis/</loc>
-    <lastmod>2024-07-01</lastmod>
+    <lastmod>2024-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
