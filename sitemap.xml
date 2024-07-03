@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2024-07-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://champion-yang.github.io/2024/06/28/hexo%E5%BB%BA%E7%AB%99/</loc>
     
     <lastmod>2024-07-02</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://champion-yang.github.io/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/</loc>
-    
-    <lastmod>2024-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
     
     <lastmod>2024-07-02</lastmod>
     
@@ -94,7 +94,7 @@
 
   <url>
     <loc>https://champion-yang.github.io/</loc>
-    <lastmod>2024-07-02</lastmod>
+    <lastmod>2024-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -102,14 +102,21 @@
   
   <url>
     <loc>https://champion-yang.github.io/tags/Redis/</loc>
-    <lastmod>2024-07-02</lastmod>
+    <lastmod>2024-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://champion-yang.github.io/tags/Docker/</loc>
-    <lastmod>2024-07-02</lastmod>
+    <lastmod>2024-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/tags/Django/</loc>
+    <lastmod>2024-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

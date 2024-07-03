@@ -18,12 +18,12 @@
   
   
   <title>DRF源码解析 | Hexo</title>
-  <meta name="description" content="DRF组件 1. Web应用模式 2. api接口 3. RESTful API规范 幂等性   4. Django的CBV 4.1 CBV的简单使用 4.2 CBV的源码解析 4.2.1 面向对象知识点回顾 4.2.2 CBV的源码解析     5. Django_Rest_Framework 6. 环境安装与配置 7. DRF的APIView视图 7.1 APIView的简单使用 7">
+  <meta name="description" content="DRF组件 1. Web应用模式 2. api接口 3. RESTful API规范 幂等性   4. Django的CBV 4.1 CBV的简单使用 4.2 CBV的源码解析 4.2.1 面向对象知识点回顾 (1)继承 (2)反射   4.2.2 CBV的源码解析     5. Django_Rest_Framework 6. 环境安装与配置 7. DRF的APIView视图 7.1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DRF源码解析">
 <meta property="og:url" content="https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="DRF组件 1. Web应用模式 2. api接口 3. RESTful API规范 幂等性   4. Django的CBV 4.1 CBV的简单使用 4.2 CBV的源码解析 4.2.1 面向对象知识点回顾 4.2.2 CBV的源码解析     5. Django_Rest_Framework 6. 环境安装与配置 7. DRF的APIView视图 7.1 APIView的简单使用 7">
+<meta property="og:description" content="DRF组件 1. Web应用模式 2. api接口 3. RESTful API规范 幂等性   4. Django的CBV 4.1 CBV的简单使用 4.2 CBV的源码解析 4.2.1 面向对象知识点回顾 (1)继承 (2)反射   4.2.2 CBV的源码解析     5. Django_Rest_Framework 6. 环境安装与配置 7. DRF的APIView视图 7.1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/indepent_frontend_backend.png">
 <meta property="og:image" content="https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/indepent_frontend_backend-16318493319127.png">
@@ -33,9 +33,9 @@
 <meta property="og:image" content="https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/DefaultRouter-16318481562186.png">
 <meta property="og:image" content="https://champion-yang.github.io/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E9%A1%B5%E9%9D%A2.png">
 <meta property="article:published_time" content="2024-07-01T01:35:59.000Z">
-<meta property="article:modified_time" content="2024-07-02T09:49:09.727Z">
+<meta property="article:modified_time" content="2024-07-03T01:01:01.658Z">
 <meta property="article:author" content="Sanil">
-<meta property="article:tag" content="技术">
+<meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://champion-yang.github.io/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/indepent_frontend_backend.png">
   <!-- Canonical links -->
@@ -194,7 +194,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -204,7 +204,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a>
+      <a href="/tags/Django/" style="font-size: 13px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a>
     </div>
   </div>
 
@@ -334,16 +334,21 @@
 </span>
         
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Django/" rel="tag">Django</a>
+  </span>
+
 
         
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 17.1k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 17.2k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 74(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 75(分)</span>
 	
 
       </div>
@@ -365,7 +370,11 @@
 <li><a href="#4-django%E7%9A%84cbv">4. Django的CBV</a><ul>
 <li><a href="#41-cbv%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">4.1 CBV的简单使用</a></li>
 <li><a href="#42-cbv%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">4.2 CBV的源码解析</a><ul>
-<li><a href="#421-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE">4.2.1 面向对象知识点回顾</a></li>
+<li><a href="#421-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE">4.2.1 面向对象知识点回顾</a><ul>
+<li><a href="#1%E7%BB%A7%E6%89%BF">(1)继承</a></li>
+<li><a href="#2%E5%8F%8D%E5%B0%84">(2)反射</a></li>
+</ul>
+</li>
 <li><a href="#422-cbv%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">4.2.2 CBV的源码解析</a></li>
 </ul>
 </li>
@@ -376,34 +385,85 @@
 <li><a href="#7-drf%E7%9A%84apiview%E8%A7%86%E5%9B%BE">7. DRF的APIView视图</a><ul>
 <li><a href="#71-apiview%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">7.1 APIView的简单使用</a></li>
 <li><a href="#72-apiview%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">7.2 APIView的源码解析</a></li>
-<li><a href="#71-%E8%AF%B7%E6%B1%82">7.1、请求</a><ul>
-<li><a href="#711-%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">7.1.1、常用属性</a></li>
-<li><a href="#712-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">7.1.2、基本使用</a></li>
+<li><a href="#71%E8%AF%B7%E6%B1%82">7.1、请求</a><ul>
+<li><a href="#711%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">7.1.1、常用属性</a><ul>
+<li><a href="#1data">1).data</a></li>
+<li><a href="#2query_params">2).query_params</a></li>
+<li><a href="#3request_request">3)request._request</a></li>
 </ul>
 </li>
-<li><a href="#72-%E5%93%8D%E5%BA%94">7.2、响应</a></li>
+<li><a href="#712%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">7.1.2、基本使用</a></li>
+</ul>
+</li>
+<li><a href="#72%E5%93%8D%E5%BA%94">7.2、响应</a><ul>
+<li><a href="#721-%E6%9E%84%E9%80%A0%E6%96%B9%E5%BC%8F">7.2.1 构造方式</a></li>
+<li><a href="#722-response%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7">7.2.2 response对象的属性</a></li>
+<li><a href="#723-%E7%8A%B6%E6%80%81%E7%A0%81">7.2.3 状态码</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#8-%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8-serializer">8. 序列化器-Serializer</a><ul>
 <li><a href="#81-%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8">8.1 定义序列化器</a></li>
 <li><a href="#82-%E5%88%9B%E5%BB%BAserializer%E5%AF%B9%E8%B1%A1">8.2 创建Serializer对象</a></li>
 <li><a href="#83-%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8">8.3 序列化器的使用</a><ul>
-<li><a href="#831-%E5%BA%8F%E5%88%97%E5%8C%96">8.3.1 序列化</a></li>
-<li><a href="#832--%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">8.3.2  反序列化</a></li>
-<li><a href="#833-%E5%9F%BA%E4%BA%8Eapiview%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0">8.3.3、基于APIView的接口实现</a></li>
+<li><a href="#831-%E5%BA%8F%E5%88%97%E5%8C%96">8.3.1 序列化</a><ul>
+<li><a href="#1%E5%9F%BA%E6%9C%AC%E5%BA%8F%E5%88%97%E5%8C%96">(1)基本序列化</a></li>
 </ul>
 </li>
-<li><a href="#84-%E6%A8%A1%E5%9E%8B%E7%B1%BB%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8">8.4 模型类序列化器</a></li>
+<li><a href="#832--%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">8.3.2  反序列化</a><ul>
+<li><a href="#1%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81">(1)数据验证</a><ul>
+<li><a href="#1-validate_%E5%AD%97%E6%AE%B5%E5%90%8D">(1) validate_字段名</a></li>
+<li><a href="#2-validate">(2) validate</a></li>
+</ul>
+</li>
+<li><a href="#2%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE">(2)反序列化-保存数据</a></li>
+<li><a href="#3-%E9%99%84%E5%8A%A0%E8%AF%B4%E6%98%8E">(3) 附加说明</a></li>
+</ul>
+</li>
+<li><a href="#833%E5%9F%BA%E4%BA%8Eapiview%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0">8.3.3、基于APIView的接口实现</a></li>
+</ul>
+</li>
+<li><a href="#84-%E6%A8%A1%E5%9E%8B%E7%B1%BB%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8">8.4 模型类序列化器</a><ul>
+<li><a href="#1%E5%AE%9A%E4%B9%89">(1)定义</a></li>
+<li><a href="#2%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5">(2)指定字段</a></li>
+<li><a href="#3%E6%B7%BB%E5%8A%A0%E9%A2%9D%E5%A4%96%E5%8F%82%E6%95%B0">(3)添加额外参数</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#9-%E8%A7%86%E5%9B%BE">9. 视图</a><ul>
-<li><a href="#91-genericapiview%E9%80%9A%E7%94%A8%E8%A7%86%E5%9B%BE%E7%B1%BB">9.1、GenericAPIView[通用视图类]</a></li>
-<li><a href="#92-5%E4%B8%AA%E8%A7%86%E5%9B%BE%E6%89%A9%E5%B1%95%E7%B1%BB">9.2、5个视图扩展类</a></li>
-<li><a href="#93--genericapiview%E7%9A%84%E8%A7%86%E5%9B%BE%E5%AD%90%E7%B1%BB">9.3、 GenericAPIView的视图子类</a></li>
-<li><a href="#94-%E8%A7%86%E5%9B%BE%E9%9B%86">9.4、视图集</a><ul>
-<li><a href="#941-viewset">9.4.1、ViewSet</a></li>
-<li><a href="#942-genericviewset">9.4.2、GenericViewSet</a></li>
-<li><a href="#943-modelviewset%E5%92%8Creadonlymodelviewset">9.4.3、ModelViewSet和ReadOnlyModelViewSet</a></li>
+<li><a href="#91genericapiview%E9%80%9A%E7%94%A8%E8%A7%86%E5%9B%BE%E7%B1%BB">9.1、GenericAPIView[通用视图类]</a><ul>
+<li><a href="#1get_serializer_classself">(1)get_serializer_class(self)</a></li>
+<li><a href="#2get_serializerself-args-kwargs">(2)get_serializer(self, *args, **kwargs)</a></li>
+<li><a href="#3get_querysetself">(3)get_queryset(self)</a></li>
+<li><a href="#4get_objectself">(4)get_object(self)</a></li>
+</ul>
+</li>
+<li><a href="#925%E4%B8%AA%E8%A7%86%E5%9B%BE%E6%89%A9%E5%B1%95%E7%B1%BB">9.2、5个视图扩展类</a><ul>
+<li><a href="#1listmodelmixin">(1)ListModelMixin</a></li>
+<li><a href="#2createmodelmixin">（2）CreateModelMixin</a></li>
+<li><a href="#3retrievemodelmixin">（3）RetrieveModelMixin</a></li>
+<li><a href="#4updatemodelmixin">（4）UpdateModelMixin</a></li>
+<li><a href="#5destroymodelmixin">（5）DestroyModelMixin</a></li>
+</ul>
+</li>
+<li><a href="#93-genericapiview%E7%9A%84%E8%A7%86%E5%9B%BE%E5%AD%90%E7%B1%BB">9.3、 GenericAPIView的视图子类</a><ul>
+<li><a href="#1createapiview">（1）CreateAPIView</a></li>
+<li><a href="#2listapiview">（2）ListAPIView</a></li>
+<li><a href="#3retrieveapiview">（3）RetrieveAPIView</a></li>
+<li><a href="#4destoryapiview">（4）DestoryAPIView</a></li>
+<li><a href="#5updateapiview">（5）UpdateAPIView</a></li>
+<li><a href="#6listcreateapiview">（6）ListCreateAPIView</a></li>
+<li><a href="#7retrieveupdateapiview">（7）RetrieveUpdateAPIView</a></li>
+<li><a href="#8retrievedestoryapiview">（8）RetrieveDestoryAPIView</a></li>
+<li><a href="#9retrieveupdatedestoryapiview">（9）RetrieveUpdateDestoryAPIView</a></li>
+</ul>
+</li>
+<li><a href="#94%E8%A7%86%E5%9B%BE%E9%9B%86">9.4、视图集</a><ul>
+<li><a href="#941viewset">9.4.1、ViewSet</a></li>
+<li><a href="#942genericviewset">9.4.2、GenericViewSet</a></li>
+<li><a href="#943modelviewset%E5%92%8Creadonlymodelviewset">9.4.3、ModelViewSet和ReadOnlyModelViewSet</a></li>
 </ul>
 </li>
 </ul>
@@ -414,7 +474,7 @@
 <li><a href="#103-%E8%B7%AF%E7%94%B1router%E5%BD%A2%E6%88%90url%E7%9A%84%E6%96%B9%E5%BC%8F">10.3 路由router形成URL的方式</a></li>
 </ul>
 </li>
-<li><a href="#11-%E5%85%B6%E5%AE%83%E5%8A%9F%E8%83%BD%E7%BB%84%E4%BB%B6">11、其它功能组件</a><ul>
+<li><a href="#11%E5%85%B6%E5%AE%83%E5%8A%9F%E8%83%BD%E7%BB%84%E4%BB%B6">11、其它功能组件</a><ul>
 <li><a href="#111-%E8%AE%A4%E8%AF%81authentication">11.1. 认证Authentication</a></li>
 <li><a href="#112-%E6%9D%83%E9%99%90permissions">11.2. 权限Permissions</a><ul>
 <li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
