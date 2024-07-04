@@ -18,16 +18,16 @@
   
   
   <title>redis缓存一致性 | Hexo</title>
-  <meta name="description" content="redis 缓存一致性 一、缓存的设计 二、数据一致性问题的出现 三、缓存一致性的解决思路 1. 常用方法: 先更新 db, 后删除 cache 2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)   四、缓存击穿问题       redis 缓存一致性在项目中发现大家使用 redis 缓存, 不太注重一致性的设计, 所以整理本文,">
+  <meta name="description" content="redis 缓存一致性 一、缓存的设计 二、数据一致性问题的出现 三、缓存一致性的解决思路 1. 常用方法: 先更新 db, 后删除 cache 2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)   四、缓存击穿问题      redis 缓存一致性在项目中发现大家使用 redis 缓存, 不太注重一致性的设计, 所以整理本文, 希">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis缓存一致性">
 <meta property="og:url" content="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="redis 缓存一致性 一、缓存的设计 二、数据一致性问题的出现 三、缓存一致性的解决思路 1. 常用方法: 先更新 db, 后删除 cache 2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)   四、缓存击穿问题       redis 缓存一致性在项目中发现大家使用 redis 缓存, 不太注重一致性的设计, 所以整理本文,">
+<meta property="og:description" content="redis 缓存一致性 一、缓存的设计 二、数据一致性问题的出现 三、缓存一致性的解决思路 1. 常用方法: 先更新 db, 后删除 cache 2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)   四、缓存击穿问题      redis 缓存一致性在项目中发现大家使用 redis 缓存, 不太注重一致性的设计, 所以整理本文, 希">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://champion-yang.github.io/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png">
 <meta property="article:published_time" content="2024-07-01T09:55:31.000Z">
-<meta property="article:modified_time" content="2024-07-02T09:32:38.256Z">
+<meta property="article:modified_time" content="2024-07-04T08:43:08.179Z">
 <meta property="article:author" content="Sanil">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8E%86%E5%8F%B2/">历史</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -195,7 +195,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%86%E5%8F%B2/" rel="tag">历史</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="tag">系统架构师</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -205,7 +205,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/Django/" style="font-size: 13px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Pandas/" style="font-size: 13px;">Pandas</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 13px;">书籍</a> <a href="/tags/%E5%8E%86%E5%8F%B2/" style="font-size: 13px;">历史</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" style="font-size: 13px;">系统架构师</a>
+      <a href="/tags/Django/" style="font-size: 13px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Pandas/" style="font-size: 14px;">Pandas</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 13px;">书籍</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13px;">架构</a>
     </div>
   </div>
 
@@ -214,7 +214,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -226,6 +226,36 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/07/04/01_pandas/2024-07-04-pandas03/" class="title">2024-07-04-pandas03</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-04T07:33:47.000Z" itemprop="datePublished">2024-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/07/04/01_pandas/2024-07-04-pandas02/" class="title">2024-07-04-pandas02</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-04T07:29:31.000Z" itemprop="datePublished">2024-07-04</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -245,7 +275,7 @@
             
             <div class="item-inner">
               <p class="item-category">
-                
+                <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a>
               </p>
               <p class="item-title">
                 <a href="/2024/07/04/%E5%A4%87%E8%80%83%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" class="title">备考系统架构师</a>
@@ -260,43 +290,13 @@
             
             <div class="item-inner">
               <p class="item-category">
-                <a class="category-link" href="/categories/%E5%8E%86%E5%8F%B2/">历史</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
+                <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
               </p>
               <p class="item-title">
                 <a href="/2024/07/04/%E6%98%8E%E6%9C%9D%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="title">明朝那些事</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-07-04T01:31:28.000Z" itemprop="datePublished">2024-07-04</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/" class="title">探究Docker镜像</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-07-02T07:32:45.000Z" itemprop="datePublished">2024-07-02</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/" class="title">Mac 通过 brew 安装 redis, 搭建 redis 集群</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-07-01T10:05:47.000Z" itemprop="datePublished">2024-07-01</time>
               </p>
             </div>
           </li>
@@ -312,6 +312,15 @@
 
   
   
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis-%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">redis 缓存一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BC%93%E5%AD%98%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">一、缓存的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、数据一致性问题的出现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">三、缓存一致性的解决思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%85%88%E6%9B%B4%E6%96%B0-db-%E5%90%8E%E5%88%A0%E9%99%A4-cache"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 常用方法: 先更新 db, 后删除 cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E6%97%B6%E5%80%99-%E5%90%8E%E5%88%A0%E7%BC%93%E5%AD%98%E8%BF%98%E6%98%AF%E5%AD%98%E5%9C%A8%E7%BC%93%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98-%E5%BD%92%E6%A0%B9%E7%BB%93%E5%BA%95%E8%BF%98%E6%98%AF%E2%80%9D%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C%E2%80%9D%E5%8F%91%E7%94%9F%E5%9C%A8%E2%80%9D%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%E2%80%9D%E4%B9%8B%E5%89%8D"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">四、缓存击穿问题</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
   <div class="content">
   <article id="post-redis缓存一致性" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -334,6 +343,11 @@
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </span>
+
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
@@ -362,19 +376,18 @@
 
 <ul>
 <li><a href="#redis-%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7">redis 缓存一致性</a><ul>
-<li><a href="#%E4%B8%80-%E7%BC%93%E5%AD%98%E7%9A%84%E8%AE%BE%E8%AE%A1">一、缓存的设计</a></li>
-<li><a href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E7%8E%B0">二、数据一致性问题的出现</a></li>
-<li><a href="#%E4%B8%89-%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF">三、缓存一致性的解决思路</a><ul>
+<li><a href="#%E4%B8%80%E7%BC%93%E5%AD%98%E7%9A%84%E8%AE%BE%E8%AE%A1">一、缓存的设计</a></li>
+<li><a href="#%E4%BA%8C%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E7%8E%B0">二、数据一致性问题的出现</a></li>
+<li><a href="#%E4%B8%89%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF">三、缓存一致性的解决思路</a><ul>
 <li><a href="#1-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%85%88%E6%9B%B4%E6%96%B0-db-%E5%90%8E%E5%88%A0%E9%99%A4-cache">1. 常用方法: 先更新 db, 后删除 cache</a></li>
 <li><a href="#2-%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E6%97%B6%E5%80%99-%E5%90%8E%E5%88%A0%E7%BC%93%E5%AD%98%E8%BF%98%E6%98%AF%E5%AD%98%E5%9C%A8%E7%BC%93%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98%E5%BD%92%E6%A0%B9%E7%BB%93%E5%BA%95%E8%BF%98%E6%98%AF%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C%E5%8F%91%E7%94%9F%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%E4%B9%8B%E5%89%8D">2. 高并发的时候, 后删缓存还是存在缓存不一致的问题(归根结底还是”删除操作”发生在”更新操作”之前)</a></li>
 </ul>
 </li>
-<li><a href="#%E5%9B%9B-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E9%97%AE%E9%A2%98">四、缓存击穿问题</a></li>
+<li><a href="#%E5%9B%9B%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E9%97%AE%E9%A2%98">四、缓存击穿问题</a></li>
 </ul>
 </li>
 </ul>
 <!-- /code_chunk_output -->
-
 
 <h1 id="redis-缓存一致性"><a href="#redis-缓存一致性" class="headerlink" title="redis 缓存一致性"></a>redis 缓存一致性</h1><p>在项目中发现大家使用 redis 缓存, 不太注重一致性的设计, 所以整理本文, 希望能给大家一些帮助</p>
 <img src="/2024/07/01/redis%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/image.png" class="" title="xxx">
@@ -476,6 +489,14 @@
       <a href="/2024/07/01/DRF%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="DRF源码解析"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
     
   </ul>
   
