@@ -1,21 +1,23 @@
 title: hexo建站
 date: 2024-06-28 14:38:28
-tags:
+tags: hexo
+toc: true
+categories: [工具]
 ---
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [hexo 操作](#hexo-操作)
-  - [创建项目](#创建项目)
-  - [启动调试](#启动调试)
-  - [创建文章](#创建文章)
+* [hexo 操作](#hexo-操作)
+  + [创建项目](#创建项目)
+  + [启动调试](#启动调试)
+  + [创建文章](#创建文章)
     - [markdown必要操作](#markdown必要操作)
       - [设置目录](#设置目录)
       - [插入图片](#插入图片)
-  - [设置主题pure](#设置主题pure)
-  - [部署推送到github](#部署推送到github)
+  + [设置主题pure](#设置主题pure)
+  + [部署推送到github](#部署推送到github)
 
 <!-- /code_chunk_output -->
 
@@ -41,6 +43,7 @@ hexo s
 
 ```shell
 hexo new 'postName'
+hexo n -p 01_pandas/2024-07-04-pandas03
 ```
 
 ### markdown必要操作
