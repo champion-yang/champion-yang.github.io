@@ -75,3 +75,15 @@ $(function() {
     $menuList[activeIndex] && $($menuList[activeIndex]).addClass('active');
   }
 });
+// 自定义功能，复制代码插件
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+      window.onload = func;
+  } else {
+      window.onload = function() {
+          oldonload();
+          func();
+      }
+  }
+}
