@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
+    <lastmod>2024-07-05</lastmod>
+  </url>
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka02/</loc>
+    <lastmod>2024-07-05</lastmod>
+  </url>
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka01/</loc>
+    <lastmod>2024-07-05</lastmod>
+  </url>
+  <url>
     <loc>https://champion-yang.github.io/2024/07/04/%E6%98%8E%E6%9C%9D%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
     <lastmod>2024-07-04</lastmod>
   </url>
@@ -22,10 +34,6 @@
   </url>
   <url>
     <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas02/</loc>
-    <lastmod>2024-07-04</lastmod>
-  </url>
-  <url>
-    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
     <lastmod>2024-07-04</lastmod>
   </url>
   <url>

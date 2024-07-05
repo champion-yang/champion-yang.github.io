@@ -17,19 +17,29 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>pandas | Hexo</title>
-  <meta name="description" content="个人文档">
+  <title>研发工程视角下的数据分析(数据处理) | Hexo</title>
+  <meta name="description" content="背景在大数据时代的背景下, 数据已经成为企业中最重要的资产和生产要素. 如何从数据中发现并挖掘有价值的信息则显得尤为重要. 在项目交付过程中, 数据是平台&#x2F;xx系统的基础, 而作为研发人员经常会面对客户的提数需求, 这部分需求经常具备个性化、临时性、一次性等特点. 如下作为示例:  产品需求: 系统上线后数据异常原因排查; 新老版本数据融合需求; 数据报表需求等 运营需求: 某次任务关联">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pandas">
+<meta property="og:title" content="研发工程视角下的数据分析(数据处理)">
 <meta property="og:url" content="https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="个人文档">
+<meta property="og:description" content="背景在大数据时代的背景下, 数据已经成为企业中最重要的资产和生产要素. 如何从数据中发现并挖掘有价值的信息则显得尤为重要. 在项目交付过程中, 数据是平台&#x2F;xx系统的基础, 而作为研发人员经常会面对客户的提数需求, 这部分需求经常具备个性化、临时性、一次性等特点. 如下作为示例:  产品需求: 系统上线后数据异常原因排查; 新老版本数据融合需求; 数据报表需求等 运营需求: 某次任务关联">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/01.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/02.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/03.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/04.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/05.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/06.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/07.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/08.png">
+<meta property="og:image" content="https://champion-yang.github.io/images/pandas/09.png">
 <meta property="article:published_time" content="2024-07-04T06:06:55.000Z">
-<meta property="article:modified_time" content="2024-07-04T08:41:33.465Z">
+<meta property="article:modified_time" content="2024-07-05T10:10:14.776Z">
 <meta property="article:author" content="Sanil">
 <meta property="article:tag" content="Pandas">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://champion-yang.github.io/images/pandas/01.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/index.html">
   
@@ -183,7 +193,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -193,7 +203,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -203,7 +213,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/Django/" style="font-size: 13px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Pandas/" style="font-size: 14px;">Pandas</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 13px;">书籍</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13px;">架构</a>
+      <a href="/tags/Django/" style="font-size: 13px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Kafka/" style="font-size: 14px;">Kafka</a> <a href="/tags/Pandas/" style="font-size: 14px;">Pandas</a> <a href="/tags/Redis/" style="font-size: 14px;">Redis</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 13px;">书籍</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 13px;">架构</a>
     </div>
   </div>
 
@@ -212,7 +222,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -224,6 +234,36 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/07/05/02_kafka/2024-07-05-kafka02/" class="title">kafka踩过的坑</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-05T08:48:17.000Z" itemprop="datePublished">2024-07-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+              </p>
+              <p class="item-title">
+                <a href="/2024/07/05/02_kafka/2024-07-05-kafka01/" class="title">kafka架构理解和基本概念</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-05T08:26:02.000Z" itemprop="datePublished">2024-07-05</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -261,40 +301,10 @@
                 <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>
               </p>
               <p class="item-title">
-                <a href="/2024/07/04/01_pandas/2024-07-04-pandas01/" class="title">pandas</a>
+                <a href="/2024/07/04/01_pandas/2024-07-04-pandas01/" class="title">研发工程视角下的数据分析(数据处理)</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-07-04T06:06:55.000Z" itemprop="datePublished">2024-07-04</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/">系统架构师</a>
-              </p>
-              <p class="item-title">
-                <a href="/2024/07/04/%E5%A4%87%E8%80%83%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88/" class="title">备考系统架构师</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-07-04T01:31:28.000Z" itemprop="datePublished">2024-07-04</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
-              </p>
-              <p class="item-title">
-                <a href="/2024/07/04/%E6%98%8E%E6%9C%9D%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="title">明朝那些事</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-07-04T01:31:28.000Z" itemprop="datePublished">2024-07-04</time>
               </p>
             </div>
           </li>
@@ -314,7 +324,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">数据分析的流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E7%A0%94%E5%8F%91%E8%A7%86%E8%A7%92%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%90%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%AF%87%E3%80%91"><span class="toc-number">3.</span> <span class="toc-text">从研发视角看数据分析【数据处理篇】</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">实践应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">4.1.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90"><span class="toc-number">4.1.2.</span> <span class="toc-text">数据集分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.2.</span> <span class="toc-text">使用示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-number">4.2.1.</span> <span class="toc-text">缺失值处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E6%9C%89%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">检查是否有缺失值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E6%A1%88%E4%BE%8BA-%E5%A6%82%E6%9E%9C%E8%AF%A5%E8%A1%8C%E5%85%B7%E6%9C%89%E7%BC%BA%E5%A4%B1%E5%80%BC-%E5%88%99%E8%BF%99%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%A2%AB%E4%B8%A2%E5%BC%83"><span class="toc-number">4.2.1.2.</span> <span class="toc-text">需求案例A: 如果该行具有缺失值, 则这一行数据被丢弃</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E6%A1%88%E4%BE%8BB-%E5%A6%82%E6%9E%9C%E8%AF%A5%E8%A1%8C%E5%85%B7%E6%9C%89%E7%BC%BA%E5%A4%B1%E5%80%BC-%E5%88%99%E7%BC%BA%E5%A4%B1%E7%9A%84%E5%80%BC%E4%BD%BF%E7%94%A8%E5%B9%B3%E5%9D%87%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A1%AB%E5%85%85"><span class="toc-number">4.2.1.3.</span> <span class="toc-text">需求案例B: 如果该行具有缺失值, 则缺失的值使用平均值进行填充</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-number">4.2.2.</span> <span class="toc-text">重复值处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D%E5%80%BC"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">检查是否有重复值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E6%A1%88%E4%BE%8BC-%E5%A6%82%E6%9E%9C%E8%AF%A5%E8%A1%8C%E6%9C%89%E9%87%8D%E5%A4%8D%E5%80%BC%E5%88%99%E4%B8%A2%E5%BC%83%E8%AF%A5%E8%A1%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">需求案例C: 如果该行有重复值则丢弃该行数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%80%BC%E6%A3%80%E6%B5%8B%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">4.2.3.</span> <span class="toc-text">异常值检测和处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E6%9C%89%E5%BC%82%E5%B8%B8%E5%80%BC"><span class="toc-number">4.2.3.1.</span> <span class="toc-text">检查是否有异常值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%96%B0%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">4.2.4.</span> <span class="toc-text">输出新的文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E6%A1%88%E4%BE%8BD-%E6%A0%B9%E6%8D%AE%E6%8F%8F%E8%BF%B0%E8%BE%93%E5%87%BA%E6%8A%A5%E5%91%8A"><span class="toc-number">4.2.4.1.</span> <span class="toc-text">需求案例D: 根据描述输出报告</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
     </nav>
   </div>
 </aside>
@@ -328,7 +338,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      pandas
+      研发工程视角下的数据分析(数据处理)
     </h1>
   
 
@@ -358,17 +368,77 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/04/01_pandas/2024-07-04-pandas01/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 0(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在大数据时代的背景下, 数据已经成为企业中最重要的资产和生产要素. 如何从数据中发现并挖掘有价值的信息则显得尤为重要. 在项目交付过程中, 数据是平台&#x2F;xx系统的基础, 而作为研发人员经常会面对客户的提数需求, 这部分需求经常具备个性化、临时性、一次性等特点. 如下作为示例:</p>
+<ul>
+<li>产品需求: 系统上线后数据异常原因排查; 新老版本数据融合需求; 数据报表需求等</li>
+<li>运营需求: 某次任务关联的报告数据; 通过系统数据做趋势预测; 数据变动的原因分析等</li>
+<li>客户需求: 提取某次数据上报过程中某省单位的上报详情并出具分析报告; 查一下某个时间点下系统数据的合规率等<br>本系列的文章介绍的数据分析区别于BI工程师【数据分析师】的数据分析, 现实情况中BI们往往在做业务方最关心的数据、最关心的问题等方向的分析, 对于日常过程中的个性化、临时性的数分需求, 一般都是通过研发工程师进行实现. 本系列文章的重点将会以研发工程师【非BI】的视角出发, 介绍如何通过 Python 快速进行数据分析.</li>
+</ul>
+<h1 id="数据分析的流程"><a href="#数据分析的流程" class="headerlink" title="数据分析的流程"></a>数据分析的流程</h1><p>知其然, 需知其所以然. 数据科学是一门复杂的学科, 包括了统计学、数据分析、机器学习在内的多种学科方法, 而数据分析则关注在现有的数据集中, 执行和处理统计分析. 体系化的了解数据分析的流程, 是做数据分析的前置条件.<br>常规的数据分析流程如下:</p>
+<p><img src="/../../images/pandas/01.png" alt="image" title="xxx"></p>
+<ul>
+<li>明确分析思路和目的: 我们接到一个分析任务, 首先要弄清楚我们分析的对象是什么, 要达成怎样的目的, 不能陷于为了分析而分析. 然后, 要熟悉行业和业务, 透彻的理解分析的目的, 构建起分析的角度和体系.</li>
+<li>数据收集: 按照确定的数据分析的思路和框架, 进行数据收集和整合.</li>
+<li>数据处理: 对收集到的数据进行清洗、加工、整理等</li>
+<li>数据分析: 通过分析手段、方法和技巧等对准备好的数据进行探索分析, 从中发现数据的规律.</li>
+<li>数据展现: 通过图表或者报告的形式进行数据到的展现.</li>
+</ul>
+<h1 id="从研发视角看数据分析【数据处理篇】"><a href="#从研发视角看数据分析【数据处理篇】" class="headerlink" title="从研发视角看数据分析【数据处理篇】"></a>从研发视角看数据分析【数据处理篇】</h1><p>作为研发工程师, 在常规的项目中, 假定我们现在接收到的临时性的提数需求已经和产品经理&#x2F;项目经理就数分的思路和目的达成了一致, 并且系统中的数据已经通过南向接口或其他方式进行了收集, 下一步要展开数据处理过程.<br>数据清洗是数据预处理的第一步, 主要是为了解决数据中的缺失值、异常值、重复值等问题. Python提供了pandas库可以帮助我们方便地处理源数据中的缺失值、重复值和异常值, 数据处理可以极大的提升数据的质量, 只有经过处理的数据才可以作为下一步数据分析模型的输入.<br>pandas常用的基本功能如下:</p>
+<ul>
+<li>从Excel、CSV、网页、SQL、剪贴板等文件或工具中读取数据; </li>
+<li>合并多个文件或者电子表格中的数据, 将数据拆分为独立文件; </li>
+<li>数据清洗, 如去重、处理缺失值、填充默认值、补全格式、处理极端值等; </li>
+<li>建立高效的索引; </li>
+<li>支持大体量数据; </li>
+<li>按一定业务逻辑插入计算后的列、删除列; </li>
+<li>灵活方便的数据查询、筛选; </li>
+<li>分组聚合数据, 可独立指定分组后的各字段计算方式; </li>
+<li>数据的转置, 如行转列、列转行变更处理; </li>
+<li>连接数据库, 直接用SQL查询数据并进行处理; </li>
+<li>对时序数据进行分组采样, 如按季、按月、按工作小时, 也可以自定义周期, 如工作日; </li>
+<li>窗口计算, 移动窗口统计、日期移动等; </li>
+<li>灵活的可视化图表输出, 支持所有的统计图形; </li>
+<li>为数据表格增加展示样式, 提高数据识别效率.</li>
+</ul>
+<h1 id="实践应用"><a href="#实践应用" class="headerlink" title="实践应用"></a>实践应用</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据集分析"><a href="#数据集分析" class="headerlink" title="数据集分析"></a>数据集分析</h3><p>在准备员工一到四月的考核结果表, 各列说明如下:</p>
+<ul>
+<li>name: 员工的姓名, 这列没有重复值, 一个员工一行</li>
+<li>team: 所在的团队, 这个数据会重复</li>
+<li>一月～四月: 各个月份的考核结果, 可能会有重复值, 缺失值, 异常值</li>
+</ul>
+<p><img src="/../../images/pandas/02.png" alt="image" title="xxx"></p>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><h3 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h3><h4 id="检查是否有缺失值"><a href="#检查是否有缺失值" class="headerlink" title="检查是否有缺失值"></a>检查是否有缺失值</h4><p>关键技术: isnull()方法返回值为布尔值, 如果数据存在缺失值, 返回True; 否则, 返回False.</p>
+<p><img src="/../../images/pandas/03.png" alt="image" title="xxx"></p>
+<p>经查, 原始数据中具备缺失值.</p>
+<h4 id="需求案例A-如果该行具有缺失值-则这一行数据被丢弃"><a href="#需求案例A-如果该行具有缺失值-则这一行数据被丢弃" class="headerlink" title="需求案例A: 如果该行具有缺失值, 则这一行数据被丢弃"></a>需求案例A: 如果该行具有缺失值, 则这一行数据被丢弃</h4><p>关键技术: dropna()用于删除含有缺失值的行.</p>
+<p><img src="/../../images/pandas/04.png" alt="image" title="xxx"></p>
+<h4 id="需求案例B-如果该行具有缺失值-则缺失的值使用平均值进行填充"><a href="#需求案例B-如果该行具有缺失值-则缺失的值使用平均值进行填充" class="headerlink" title="需求案例B: 如果该行具有缺失值, 则缺失的值使用平均值进行填充"></a>需求案例B: 如果该行具有缺失值, 则缺失的值使用平均值进行填充</h4><p>关键技术: fillna()方法用于填充含有缺失值的行.mean()方法用于求改行的平均值.</p>
+<p><img src="/../../images/pandas/05.png" alt="image" title="xxx"></p>
+<h3 id="重复值处理"><a href="#重复值处理" class="headerlink" title="重复值处理"></a>重复值处理</h3><h4 id="检查是否有重复值"><a href="#检查是否有重复值" class="headerlink" title="检查是否有重复值"></a>检查是否有重复值</h4><p>关键技术: duplicated()方法检测冗余的行或列, 默认是判断全部列中的值是否全部重复, 并返回布尔类型的结果. 对于完全没有重复的行, 返回值为False. 对于有重复值的行, 第一次出现重复的那一行返回False, 其余的返回True.</p>
+<p><img src="/../../images/pandas/06.png" alt="image" title="xxx"></p>
+<h4 id="需求案例C-如果该行有重复值则丢弃该行数据"><a href="#需求案例C-如果该行有重复值则丢弃该行数据" class="headerlink" title="需求案例C: 如果该行有重复值则丢弃该行数据"></a>需求案例C: 如果该行有重复值则丢弃该行数据</h4><p>关键技术: drop_duplicates()删除重复的行.</p>
+<p><img src="/../../images/pandas/07.png" alt="image" title="xxx"></p>
+<h3 id="异常值检测和处理"><a href="#异常值检测和处理" class="headerlink" title="异常值检测和处理"></a>异常值检测和处理</h3><h4 id="检查是否有异常值"><a href="#检查是否有异常值" class="headerlink" title="检查是否有异常值"></a>检查是否有异常值</h4><p>关键技术:query()方法查询数据中是否有异常值, 用于在 DataFrame 中执行类似于 SQL 的查询的工具, 支持简单查询, 逻辑运算查询, 字符串查询等.</p>
+<p><img src="/../../images/pandas/08.png" alt="image" title="xxx"></p>
+<h3 id="输出新的文件"><a href="#输出新的文件" class="headerlink" title="输出新的文件"></a>输出新的文件</h3><h4 id="需求案例D-根据描述输出报告"><a href="#需求案例D-根据描述输出报告" class="headerlink" title="需求案例D: 根据描述输出报告"></a>需求案例D: 根据描述输出报告</h4><p>需求描述: 将原始数据根据姓名进行分组, 缺失值和异常值默认按照0进行统计, 计算每个人的平均分并从大到小进行排序, 输出内容到 excel.<br>代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入Pandas库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取excel内容</span></span><br><span class="line"></span><br><span class="line">df = pd.read_excel(<span class="string">&quot;./数据集/team.xlsx&quot;</span>, )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用 0 填充缺失值</span></span><br><span class="line"></span><br><span class="line">df = df.fillna(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除重复的行</span></span><br><span class="line"></span><br><span class="line">df = df.drop_duplicates().copy()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缺失值和异常值默认按照0进行填充</span></span><br><span class="line"></span><br><span class="line">df[[<span class="string">&quot;一月&quot;</span>, <span class="string">&quot;二月&quot;</span>, <span class="string">&quot;三月&quot;</span>, <span class="string">&quot;四月&quot;</span>]] = df[[<span class="string">&quot;一月&quot;</span>, <span class="string">&quot;二月&quot;</span>, <span class="string">&quot;三月&quot;</span>, <span class="string">&quot;四月&quot;</span>]].applymap(<span class="keyword">lambda</span> x: <span class="number">0</span> <span class="keyword">if</span> x &gt; <span class="number">100</span> <span class="keyword">or</span> x &lt; <span class="number">0</span> <span class="keyword">else</span> x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加一列, 平均值</span></span><br><span class="line"></span><br><span class="line">df[<span class="string">&#x27;平均值&#x27;</span>] = df[[<span class="string">&quot;一月&quot;</span>, <span class="string">&quot;二月&quot;</span>, <span class="string">&quot;三月&quot;</span>, <span class="string">&quot;四月&quot;</span>]].mean(axis=<span class="number">1</span>).<span class="built_in">round</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照平均值排序</span></span><br><span class="line"></span><br><span class="line">df = df.sort_values([<span class="string">&#x27;平均值&#x27;</span>], ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将数据输出到Excel文件中</span></span><br><span class="line"></span><br><span class="line">df.to_excel(<span class="string">&#x27;./output.xlsx&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出的excel结果如下:</p>
+<p><img src="/../../images/pandas/09.png" alt="image" title="xxx"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文简单介绍了数据分析的流程以及如何做数据的预处理. 利用几个示例对工作中常见的操作进行了说明, 从代码的层面可以看出, 利用 Python 进行数据分析的操作会更加的灵活快捷方便, 尤其是在临时性的需求面前, 会大大节约我们的时间和资源成本.</p>
+
       
     </div>
     <div class="article-footer">
@@ -377,7 +447,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/" title="pandas" target="_blank" rel="external">https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</a>
+      <a href="https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/" title="研发工程视角下的数据分析(数据处理)" target="_blank" rel="external">https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</a>
     </li>
     
     <li class="post-copyright-license">
