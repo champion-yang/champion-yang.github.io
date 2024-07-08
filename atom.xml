@@ -6,7 +6,7 @@
   <link href="https://champion-yang.github.io/atom.xml" rel="self"/>
   
   <link href="https://champion-yang.github.io/"/>
-  <updated>2024-07-05T08:51:57.869Z</updated>
+  <updated>2024-07-08T10:23:35.027Z</updated>
   <id>https://champion-yang.github.io/</id>
   
   <author>
@@ -17,13 +17,66 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>kafka 常用命令</title>
+    <link href="https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/"/>
+    <id>https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/</id>
+    <published>2024-07-08T06:33:09.000Z</published>
+    <updated>2024-07-08T10:23:35.027Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>查看所有 topic</strong></p><ul><li><code>./kafka-topics.sh --zookeeper=10.5.208.13:2181 --list</code></li></ul><p><strong>创建topic——注意: 必须指定分区和副本, 否则会报错; 不同的版本需要指定的参数不同; Replication 不能超过 brokers 数量</strong></p><ul><li><code>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic testA</code></li><li><code>bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 3 --partitions 3 --topic testA</code></li></ul><p><strong>删除topic</strong></p><ul><li><code>./kafka-topics.sh --zookeeper=10.5.208.13:2181 --topic xxx --delete</code></li></ul><p><strong>查看topic属性</strong></p><ul><li><code>./kafka-topics.sh --describe --zookeeper=10.5.208.13:2181 --topic xxx</code></li></ul><p><strong>topic增加分区</strong></p><ul><li><code>./kafka-topics.sh --alter --zookeeper=10.5.208.13:2181 --topic xxx --partitions 10</code><blockquote><p>分区数增加到10个, 如果topic的分区增加, 则分区逻辑或消息顺序将受到影响, 会引起rebalance操作</p></blockquote></li></ul><p><strong>生产数据</strong></p><ul><li><code>./kafka-console-producer.sh --broker-list 10.5.208.13:9092 --topic TCP_6666</code></li></ul><p><strong>消费数据</strong></p><ul><li><code>./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first --from-beginning</code></li></ul><p><strong>重置偏移量</strong></p><ul><li><code>./kafka-consumer-groups.sh --bootstrap-server=10.5.208.13:9092 --execute --reset-offsets --topic=xxx --group=testPlatform-local-pha  --to-earliest</code></li></ul><p><strong>显示所有消费者</strong></p><ul><li><code>./kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list</code></li></ul><p><strong>查看Broker磁盘信息kafka-log-dirs.sh</strong></p><ul><li><p><code>/home/master/kafka/bin/kafka-log-dirs.sh --bootstrap-server localhost:9092 --describe --topic-list vuln</code></p></li><li><p><code>/home/master/kafka/bin/kafka-configs.sh --list --bootstrap-server localhost:9092</code></p></li><li><p><code>/home/master/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic vuln</code></p></li></ul><p><strong>查询 kafka 消费者组的信息</strong></p><ul><li><p><code>kafka=/home/master/kafka/</code></p></li><li><p><code>$kafka/bin/kafka-consumer-groups.sh --bootstrap-server=localhost:9092 --describe --group &quot;groupName&quot;</code></p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;查看所有 topic&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;./kafka-topics.sh --zookeeper=10.5.208.13:2181 --list&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;创建topic</summary>
+      
+    
+    
+    
+    <category term="技术" scheme="https://champion-yang.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Kafka" scheme="https://champion-yang.github.io/tags/Kafka/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python虚拟环境</title>
+    <link href="https://champion-yang.github.io/2024/07/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+    <id>https://champion-yang.github.io/2024/07/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</id>
+    <published>2024-07-08T06:14:22.000Z</published>
+    <updated>2024-07-08T06:25:11.155Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>平常使用 anaconda 对开发环境做管理, 公司某天发了一条通知, 说 anaconda 未经授权不许使用, 存在 xxx 风险, 限令在一天内进行卸载. 在平常的一些 python 的项目中, anaconda 还是很方便的, 不同的项目管理不同的开发环境, 不过得合乎公司的规定, 所以只能通过其他的方式【命令】创建和管理虚拟环境了. 都是一些基础知识, 时间长没用, 做个记录.</p></blockquote><p><a href="https://www.anaconda.com/download/">anaconda</a></p><h1 id="使用-virtualenv-管理虚拟环境"><a href="#使用-virtualenv-管理虚拟环境" class="headerlink" title="使用 virtualenv 管理虚拟环境"></a>使用 virtualenv 管理虚拟环境</h1><p>由于项目需要, 需要同时具备 py2 和 py3, 所以在创建虚拟环境的时候需要指定 python 解释器</p><p>创建虚拟环境</p><p> <code>virtualenv env27 --python=python2.7</code></p><p>激活虚拟环境</p><ul><li>windows: <code>.\env27\Scripts\activate</code></li></ul><p>退出虚拟环境</p><ul><li>windows: <code>.\env27\Scripts\deactivate</code></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;平常使用 anaconda 对开发环境做管理, 公司某天发了一条通知, 说 anaconda 未经授权不许使用, 存在 xxx 风险, 限令在一天内进行卸载. 在平常的一些 python 的项目中, anaconda 还是很方便的, 不同的项目管理</summary>
+      
+    
+    
+    
+    <category term="编程语言" scheme="https://champion-yang.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="Python" scheme="https://champion-yang.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>kafka踩过的坑</title>
     <link href="https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka02/"/>
     <id>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka02/</id>
     <published>2024-07-05T08:48:17.000Z</published>
-    <updated>2024-07-05T08:51:57.869Z</updated>
+    <updated>2024-07-08T10:23:32.244Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ol><li><a href="https://cloud.tencent.com/developer/article/1799294">我用kafka两年踩过的一些非比寻常的坑</a></li><li><a href="https://www.szzdzhp.com/"></a><a href="https://www.szzdzhp.com/">https://www.szzdzhp.com/</a></li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ol><li><a href="https://cloud.tencent.com/developer/article/1799294">我用kafka两年踩过的一些非比寻常的坑</a></li><li><a href="https://www.szzdzhp.com/"></a><a href="https://www.szzdzhp.com/">https://www.szzdzhp.com/</a></li></ol><h1 id="python-kafka"><a href="#python-kafka" class="headerlink" title="python-kafka"></a>python-kafka</h1><blockquote><p>在 python2 下测试 <code>kafka-python==1.4.7</code></p></blockquote><p>安装<br> <code>pip2 install kafka-python==1.4.7</code></p><h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p><a href="https://blog.csdn.net/qq_16829085/article/details/108414433">使用 kafka-python 产生的错误</a></p><p> <code>ValueError: filedescriptor out of range in select()</code></p><p> <a href="https://blog.csdn.net/whatday/article/details/113771166">fd 超出 1024 导致的异常1</a><br> <a href="https://github.com/dpkp/kafka-python/issues/1952">fd 超出 1024 导致的异常2</a></p><p><img src="/../../images/kafka/01.png" alt="img"></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="SimplePorducer"><a href="#SimplePorducer" class="headerlink" title="SimplePorducer"></a>SimplePorducer</h3><blockquote><p>send_messages接收多个发送消息, 用create_message_set打包成一个messages列表, messages传给ProduceRequestPayload创建一个payloads对象, 用payload对应的broker对payloads分组, 遍历这个分组每个分组发送一次, 用ProduceRequest对payload创建request对象, 用BrokerConnection对象发送request对象, 发送时使用的socket连接, 发送后返回一个future对象, 再用select.select监听这些连接, 当文件描述符超过1024时报错就是这时候发生的.client的创建类为KafkaClient, 基础类为SimpleClent</p></blockquote><blockquote><p>问题, select.select监听文件描述符报错, 文件描述符报错实际是在SimpleClent._send_broker_aware_request中产生, 可能的话可以重写_send_broker_aware_request方法</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaClient,SimpleProducer</span><br><span class="line">host = <span class="string">&#x27;10.8.100.7:9092&#x27;</span></span><br><span class="line">client = KafkaClient(host=host)</span><br><span class="line">producer = SimpleProducer(client=client)</span><br><span class="line">messages = [<span class="string">&#x27;messageA&#x27;</span>,<span class="string">&#x27;messageB&#x27;</span>]</span><br><span class="line">topic = <span class="string">&#x27;topic&#x27;</span></span><br><span class="line">producer.send_messages(topic,*messages)</span><br></pre></td></tr></table></figure><h3 id="KafkaProducer"><a href="#KafkaProducer" class="headerlink" title="KafkaProducer"></a>KafkaProducer</h3><blockquote><p>KafkaProducer通过send在代码逻辑上发送发送单条消息, 但是KafkaProducer实现了一个了一个线程, 通过send将消息发送到列表中, 在线程通过消费这个列表, 当消息满足batch_size个字符的数据的发送条件时, 会讲batch_size个字符的数据用socket发送给kafka, 发送完成会将连接放入_sending. 这个线程是一个循环调用run_once方法, 在run_once发送中调用发送逻辑, 发送完成后讲_sending中conn注册到kqueue中, 等待连接回调. 因为KafkaProducer使用的是kqueue, 所以不会碰到和SimpleProducer一样的问题.</p></blockquote><p>后线程的实现类是Sender, kafka连接类是BrokerConnection, kafka client类是client_async. KafkaClient, selector类是vendor&#x2F;selectors34.py. KqueueSelector</p><blockquote><p>问题:kafkaProducer当发送数据比较多时, 发送次数也会多, 当在django中请求比较少时, 发送到列表中数据也少, 发送一个请求发送到kafka中, 可能连续都完成了, </p></blockquote><p>发送很快, 当请求变多时, 发送到列表中的数据变的无序, 不一定属于那个哪个请求的哪一次kafka发送, 因此会导致请求的数据发送到kafka变慢.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaProducer</span><br><span class="line">host = <span class="string">&#x27;10.8.100.7:9092&#x27;</span></span><br><span class="line">producer = KafkaProducer(bootstrap_servers=host)</span><br><span class="line">messages = [<span class="string">&#x27;messageA&#x27;</span>,<span class="string">&#x27;messageB&#x27;</span>]</span><br><span class="line">topic = <span class="string">&#x27;topic&#x27;</span></span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    producer.send(topic,messages)</span><br></pre></td></tr></table></figure>]]></content>
     
     
       

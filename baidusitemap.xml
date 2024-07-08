@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
+    <loc>https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2024-07-08</lastmod>
   </url>
   <url>
     <loc>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka02/</loc>
-    <lastmod>2024-07-05</lastmod>
+    <lastmod>2024-07-08</lastmod>
+  </url>
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2024-07-08</lastmod>
+  </url>
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
+    <lastmod>2024-07-08</lastmod>
   </url>
   <url>
     <loc>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka01/</loc>

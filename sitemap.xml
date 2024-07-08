@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
+    <loc>https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2024-07-08</lastmod>
     
@@ -13,7 +13,25 @@
   <url>
     <loc>https://champion-yang.github.io/2024/07/05/02_kafka/2024-07-05-kafka02/</loc>
     
-    <lastmod>2024-07-05</lastmod>
+    <lastmod>2024-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2024-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/2024/07/04/01_pandas/2024-07-04-pandas01/</loc>
+    
+    <lastmod>2024-07-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -219,6 +237,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://champion-yang.github.io/tags/Python/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -265,6 +290,13 @@
   
   <url>
     <loc>https://champion-yang.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://champion-yang.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
