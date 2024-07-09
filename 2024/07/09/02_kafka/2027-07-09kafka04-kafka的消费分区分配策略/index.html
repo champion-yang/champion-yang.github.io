@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Hexo</title>
-  <meta name="description" content="《无职转生》               作者：理不尽な孫の手       出版时间：       2014-01-24——2022-11-25                推荐指数：">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Snail Book">
-<meta property="og:url" content="https://champion-yang.github.io/books/index.html">
+  <title>kafka的消费分区分配策略 | Hexo</title>
+  <meta name="description" content="这将是一篇比较无聊的文章  一个consumer group中有多个consumer, 一个topic有多个partition, 所以必然会涉及到partition的分配问题, 即确定那个partition由哪个consumer来消费 Kafka有三种分配策略, 一是RoundRobin, 一是Range. 高版本还有一个StickyAssignor策略 将分区的所有权从一个消费者移到另一个消费">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka的消费分区分配策略">
+<meta property="og:url" content="https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="《无职转生》               作者：理不尽な孫の手       出版时间：       2014-01-24——2022-11-25                推荐指数：">
+<meta property="og:description" content="这将是一篇比较无聊的文章  一个consumer group中有多个consumer, 一个topic有多个partition, 所以必然会涉及到partition的分配问题, 即确定那个partition由哪个consumer来消费 Kafka有三种分配策略, 一是RoundRobin, 一是Range. 高版本还有一个StickyAssignor策略 将分区的所有权从一个消费者移到另一个消费">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-04T03:13:42.687Z">
-<meta property="article:modified_time" content="2024-07-04T03:13:42.687Z">
+<meta property="article:published_time" content="2024-07-09T08:33:19.000Z">
+<meta property="article:modified_time" content="2024-07-09T08:40:42.207Z">
 <meta property="article:author" content="Sanil">
-<meta property="article:tag" content="技术">
+<meta property="article:tag" content="Kafka">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://champion-yang.github.io/books/index.html">
+  <link rel="canonical" href="https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Snail Book" type="application/atom+xml">
   
@@ -310,73 +310,85 @@
 
   
   
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Range%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">1.</span> <span class="toc-text">Range分区分配策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RoundRobinAssignor%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">2.</span> <span class="toc-text">RoundRobinAssignor分区分配策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StickyAssignor%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">3.</span> <span class="toc-text">StickyAssignor分区分配策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">引用</span></a>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-02_kafka/2027-07-09kafka04-kafka的消费分区分配策略" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      kafka的消费分区分配策略
+    </h1>
+  
+
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/books/index.html" class="article-date">
-	  <time datetime="2024-07-04T03:13:42.687Z" itemprop="datePublished">2024-07-04</time>
+	<a href="/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="article-date">
+	  <time datetime="2024-07-09T08:33:19.000Z" itemprop="datePublished">2024-07-09</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Kafka/" rel="tag">Kafka</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/books/index.html#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 234(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.7k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
-<link rel="stylesheet" href="/css/book.css" />
-
-<div class="page">
-  <!-- 每个li标签内容代表一本书籍的所有信息 -->
-  <div class="info">
-
-    <!-- <div class="image" title="无职转生">
-      <img
-        src="https://cdn.jsdelivr.net/npm/xiansakana-blog-assets/blog-assets/%E6%97%A0%E8%81%8C%E8%BD%AC%E7%94%9F/images/cover.jpg"
-      />
-    </div> -->
-    <div class="info-card">
-      <!-- <a href="https://cdn.jsdelivr.net/npm/xiansakana-blog-assets@1.0.1/blog-assets/%E6%97%A0%E8%81%8C%E8%BD%AC%E7%94%9FWEB_compressed.pdf" target="_Blank">                           -->
-      <h2>
-        <a href="无职转生/无职转生.html" target="_Blank"> 《无职转生》 </a>
-      </h2>
-      <h4>作者：理不尽な孫の手</h4>
-      <h4>出版时间：</h4>
-      <p>2014-01-24——2022-11-25</p>
-      <h4>
-        <span>推荐指数：</span>
-        <span>
-          <!-- 推荐指数，多少个星星就有以下多少个i标签 -->
-          <i class="fas fa-star"></i><i class="fas fa-star"></i
-          ><i class="fas fa-star"></i><i class="fas fa-star"></i
-          ><i class="fas fa-star"></i>
-        </span>
-      </h4>
-      <p class="text">
-        34岁无职童贞尼特身无分文地被赶出家门，发现自己的人生已经完全走投无路。刚刚产生后悔的想法，他就被卡车撞死了。然后醒来的地方居然是——剑与魔法的异世界！！重生为名叫卢迪乌斯的婴儿的他下定决心，“这次一定要认真地活下去……！”，一定要度过一段不会后悔的人生。他利用前世的智力很快使得自己的魔法的才能开花结果，结果一位年轻的女孩子成了自己的家庭教师。并且又与一位有着绿宝石般美丽秀发的四分一血统的精灵相遇。他崭新的人生开始前进。——让人憧憬的转生型奇幻小说，在这里开始。
-      </p>
-    </div>
-
-  </div>
-</div>
+        <blockquote>
+<p>这将是一篇比较无聊的文章</p>
+</blockquote>
+<p>一个consumer group中有多个consumer, 一个topic有多个partition, 所以必然会涉及到partition的分配问题, 即确定那个partition由哪个consumer来消费 Kafka有三种分配策略, 一是RoundRobin, 一是Range. 高版本还有一个StickyAssignor策略 将分区的所有权从一个消费者移到另一个消费者称为重新平衡(rebalance). 当以下事件发生时, Kafka 将会进行一次分区分配:</p>
+<ul>
+<li>同一个 Consumer Group 内新增消费者.</li>
+<li>消费者离开当前所属的Consumer Group, 包括shuts down或crashes.</li>
+</ul>
+<h2 id="Range分区分配策略"><a href="#Range分区分配策略" class="headerlink" title="Range分区分配策略"></a>Range分区分配策略</h2><p>Range是对每个Topic而言的(即一个Topic一个Topic分), 首先对同一个Topic里面的分区按照序号进行排序, 并对消费者按照字母顺序进行排序. 然后用Partitions分区的个数除以消费者线程的总数来决定每个消费者线程消费几个分区. 如果除不尽, 那么前面几个消费者线程将会多消费一个分区. 假设n&#x3D;分区数&#x2F;消费者数量, m&#x3D;分区数%消费者数量, 那么前m个消费者每个分配n+1个分区, 后面的(消费者数<br>量-m)个消费者每个分配n个分区. 假如有10个分区, 3个消费者线程, 把分区按照序号排列<br>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<br>消费者线程为<br>C1-0, C2-0, C2-1<br>那么用partition数除以消费者线程的总数来决定每个消费者线程消费几个partition, 如果除不尽, 前面几个消费者将会多消费一个分区. 在我们的例子里面, 我们有10个分区, 3个消费者线程, 10&#x2F;3 &#x3D; 3, 而且除不尽, 那么消费者线程C1-0将会多消费一个分区, 所以最后分区分配的结果看起来是这样的:<br>C1-0:0, 1, 2, 3<br>C2-0:4, 5, 6<br>C2-1:7, 8, 9<br>如果有11个分区将会是:<br>C1-0:0, 1, 2, 3<br>C2-0:4, 5, 6, 7<br>C2-1:8, 9, 10<br>假如我们有两个主题T1, T2, 分别有10个分区, 最后的分配结果将会是这样:<br>C1-0: T1(0, 1, 2, 3) T2(0, 1, 2, 3)<br>C2-0: T1(4, 5, 6) T2(4, 5, 6)<br>C2-1: T1(7, 8, 9) T2(7, 8, 9)</p>
+<h2 id="RoundRobinAssignor分区分配策略"><a href="#RoundRobinAssignor分区分配策略" class="headerlink" title="RoundRobinAssignor分区分配策略"></a>RoundRobinAssignor分区分配策略</h2><p>RoundRobinAssignor策略的原理是将消费组内所有消费者以及消费者所订阅的所有topic的partition按照字典序排序, 然后通过轮询方式逐个将分区以此分配给每个消费者. 使用RoundRobin策略有两个前提条件必须满足:</p>
+<ul>
+<li>同一个消费者组里面的所有消费者的num.streams(消费者消费线程数)必须相等; </li>
+<li>每个消费者订阅的主题必须相同.</li>
+</ul>
+<p>加入按照 hashCode 排序完的topic-partitions组依次为<br>T1-5, T1-3, T1-0, T1-8, T1-2, T1-1, T1-4, T1-7, T1-6, T1-9<br>我们的消费者线程排序为<br>C1-0, C1-1, C2-0, C2-1<br>最后分区分配的结果为:<br>C1-0 将消费 T1-5, T1-2, T1-6 分区<br>C1-1 将消费 T1-3, T1-1, T1-9 分区<br>C2-0 将消费 T1-0, T1-4 分区<br>C2-1 将消费 T1-8, T1-7 分区</p>
+<h2 id="StickyAssignor分区分配策略"><a href="#StickyAssignor分区分配策略" class="headerlink" title="StickyAssignor分区分配策略"></a>StickyAssignor分区分配策略</h2><p>Kafka从0.11.x版本开始引入这种分配策略, 它主要有两个目的:<br>分区的分配要尽可能的均匀, 分配给消费者者的主题分区数最多相差一个分区的分配尽可能的与上次分配的保持相同.</p>
+<p>当两者发生冲突时, 第一个目标优先于第二个目标. 鉴于这两个目的, StickyAssignor策略的具体实现要比RangeAssignor和RoundRobinAssignor这两种分配策略要复杂很多.</p>
+<p>假设消费组内有3个消费者<br>C0、C1、C2<br>它们都订阅了4个主题:<br>t0、t1、t2、t3<br>并且每个主题有2个分区, 也就是说整个消费组订阅了<br>t0p0、t0p1、t1p0、t1p1、t2p0、t2p1、t3p0、t3p1这8个分区<br>最终的分配结果如下:<br>消费者C0:t0p0、t1p1、t3p0<br>消费者C1:t0p1、t2p0、t3p1<br>消费者C2:t1p0、t2p1<br>这样初看上去似乎与采用RoundRobinAssignor策略所分配的结果相同<br>此时假设消费者C1脱离了消费组, 那么消费组就会执行再平衡操作, 进而消费分区会重新分配. 如果采<br>用RoundRobinAssignor策略, 那么此时的分配结果如下:<br>消费者C0:t0p0、t1p0、t2p0、t3p0<br>消费者C2:t0p1、t1p1、t2p1、t3p1<br>如分配结果所示, RoundRobinAssignor策略会按照消费者C0和C2进行重新轮询分配. 而如果此时使用<br>的是StickyAssignor策略, 那么分配结果为:<br>消费者C0:t0p0、t1p1、t3p0、t2p0<br>消费者C2:t1p0、t2p1、t0p1、t3p1<br>可以看到分配结果中保留了上一次分配中对于消费者C0和C2的所有分配结果, 并将原来消费者C1的”负担”分配给了剩余的两个消费者C0和C2, 最终C0和C2的分配还保持了均衡.<br>如果发生分区重分配, 那么对于同一个分区而言有可能之前的消费者和新指派的消费者不是同一个, 对于之前消费者进行到一半的处理还要在新指派的消费者中再次复现一遍, 这显然很浪费系统资源.<br>StickyAssignor策略如同其名称中的”sticky”一样, 让分配策略具备一定的”粘性”, 尽可能地让前后两次分配相同, 进而减少系统资源的损耗以及其它异常情况的发生. 到目前为止所分析的都是消费者的订阅信息都是相同的情况, 我们来看一下订阅信息不同的情况下的处理.<br>举例, 同样消费组内有3个消费者:<br>C0、C1、C2<br>集群中有3个主题:<br>t0、t1、t2<br>这3个主题分别有<br>1、2、3个分区<br>也就是说集群中有<br>t0p0、t1p0、t1p1、t2p0、t2p1、t2p2这6个分区<br>消费者C0订阅了主题t0<br>消费者C1订阅了主题t0和t1<br>消费者C2订阅了主题t0、t1和t2<br>如果此时采用RoundRobinAssignor策略:<br>消费者C0:t0p0<br>消费者C1:t1p0<br>消费者C2:t1p1、t2p0、t2p1、t2p2<br>如果此时采用的是StickyAssignor策略:<br>消费者C0:t0p0<br>消费者C1:t1p0、t1p1<br>消费者C2:t2p0、t2p1、t2p2<br>此时消费者C0脱离了消费组, 那么RoundRobinAssignor策略的分配结果为:<br>消费者C1:t0p0、t1p1<br>消费者C2:t1p0、t2p0、t2p1、t2p2<br>StickyAssignor策略, 那么分配结果为:<br>消费者C1:t1p0、t1p1、t0p0<br>消费者C2:t2p0、t2p1、t2p2<br>可以看到StickyAssignor策略保留了消费者C1和C2中原有的5个分区的分配:<br>t1p0、t1p1、t2p0、t2p1、t2p2.<br>从结果上看StickyAssignor策略比另外两者分配策略而言显得更加的优异, 这个策略的代码实现也是异<br>常复杂.</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><blockquote>
+<p>公众号: 大数据左右手</p>
+</blockquote>
 
       
     </div>
@@ -386,7 +398,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://champion-yang.github.io/books/index.html" title="" target="_blank" rel="external">https://champion-yang.github.io/books/index.html</a>
+      <a href="https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="kafka的消费分区分配策略" target="_blank" rel="external">https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka04-kafka的消费分区分配策略/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -429,6 +441,28 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/07/09/02_kafka/2027-07-09kafka05-%E5%B9%82%E7%AD%89/" title="2027-07-09kafka05-幂等"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/" title="kafka 常用命令"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -544,6 +578,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
+
+   
 
 
 
