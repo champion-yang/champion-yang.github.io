@@ -6,7 +6,7 @@
   <link href="https://champion-yang.github.io/atom.xml" rel="self"/>
   
   <link href="https://champion-yang.github.io/"/>
-  <updated>2024-07-09T09:15:44.913Z</updated>
+  <updated>2024-07-09T09:53:03.623Z</updated>
   <id>https://champion-yang.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2027-07-09kafka05-幂等</title>
+    <title>kafka 保证数据一致性</title>
     <link href="https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka05-%E5%B9%82%E7%AD%89/"/>
     <id>https://champion-yang.github.io/2024/07/09/02_kafka/2027-07-09kafka05-%E5%B9%82%E7%AD%89/</id>
     <published>2024-07-09T08:57:15.000Z</published>
-    <updated>2024-07-09T09:15:44.913Z</updated>
+    <updated>2024-07-09T09:53:03.623Z</updated>
     
     <content type="html"><![CDATA[<h2 id="消息系统语义概述-Overview-of-messaging-system-semantics"><a href="#消息系统语义概述-Overview-of-messaging-system-semantics" class="headerlink" title="消息系统语义概述(Overview of messaging system semantics)"></a>消息系统语义概述(Overview of messaging system semantics)</h2><p>在一个分布式发布订阅消息系统中, 组成系统的计算机总会由于各自的故障而不能工作. 在Kafka中, 一个单独的broker, 可能会在生产者发送消息到一个topic的时候宕机, 或者出现网络故障, 从而导致生产者发送消息失败. 根据生产者如何处理这样的失败, 产生了不同的语义:</p><ul><li><strong>至少一次语义(At least once semantics)</strong>: 如果生产者收到了Kafka broker的确认(acknowledgement, ack), 并且生产者的acks配置项设置为all(或-1), 这就意味着消息已经被精确一次写入Kafka topic了. 然而, 如果生产者接收ack超时或者收到了错误, 它就会认为消息没有写入Kafka topic而尝试重新发送消息. 如果broker恰好在消息已经成功写入Kafka topic后, 发送ack前, 出了故障, 生产者的重试机制就会导致这条消息被写入Kafka两次, 从而导致同样的消息会被消费者消费不止一次. 每个人都喜欢一个兴高采烈的给予者, 但是这种方式会导致重复的工作和错误的结果.</li><li><strong>至多一次语义(At most once semantics)</strong>: 如果生产者在ack超时或者返回错误的时候不重试发送消息, 那么消息有可能最终并没有写入Kafka topic中, 因此也就不会被消费者消费到. 但是为了避免重复处理的可能性, 我们接受有些消息可能被遗漏处理.</li><li><strong>精确一次语义(Exactly once semantics)</strong>: 即使生产者重试发送消息, 也只会让消息被发送给消费者一次. 精确一次语义是最令人满意的保证, 但也是最难理解的. 因为它需要消息系统本身和生产消息的应用程序还有消费消息的应用程序一起合作. 比如, 在成功消费一条消息后, 你又把消费的offset重置到之前的某个offset位置, 那么你将收到从那个offset到最新的offset之间的所有消息. 这解释了为什么消息系统和客户端程序必须合作来保证精确一次语义.</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>将服务器的ACK级别设置为-1, 可以保证Producer到Server之间不会丢失数据, 即At Least Once语义.<br>相对的, 将服务器ACK级别设置为0, 可以保证生产者每条消息只会被发送一次, 即At Most Once语义.</p><p>At Least Once可以保证数据不丢失, 但是不能保证数据不重复;<br>相对的, At Least Once可以保证数据不重复, 但是不能保证数据不丢失.</p><p>但是, 对于一些非常重要的信息, 比如说交易数据, 下游数据消费者要求数据既不重复也不丢失, 即Exactly Once语义.<strong>在0.11版本以前的Kafka, 对此是无能为力的, 只能保证数据不丢失</strong>, 再在下游消费者对数据做全局去重. 对于多个下游应用的情况, 每个都需要单独做全局去重, 这就对性能造成了很大影响.</p><p>0.11版本的Kafka, 引入了一项重大特性:<strong>幂等性</strong>.</p><p>开启幂等性 <code>enable.idempotence=true</code> .</p><p>所谓的幂等性就是指Producer不论向Server发送多少次重复数据, Server端都只会持久化一条. 幂等性结合At Least Once语义, 就构成了Kafka的Exactly Once语义. 即:</p><p> <code>At Least Once + 幂等性 = Exactly Once</code></p><p>Kafka的幂等性实现其实就是将原来下游需要做的去重放在了数据上游. 开启幂等性的Producer在初始化的时候会被分配一个PID, 发往同一Partition的消息会附带Sequence Number. 而Broker端会对<br>&lt;PID, Partition, SeqNumber&gt;做缓存, 当具有相同主键的消息提交时, Broker只会持久化一条.</p><p>但是PID重启就会变化, 同时不同的Partition也具有不同主键, 所以幂等性无法保证跨分区跨会话的 Exactly Once.</p><p>所以0.11版本的Kafka引入了事务的概念</p><p><strong>事务: 跨partition的原子性写操作</strong><br>Kafka现在支持使用新事务API原子性的对跨partition进行写操作, 该API允许producer发送批量消息到多个partition. 该功能同样支持在同一个事务中提交消费者offsets, 因此真正意义上实现了end-to-end的exactly-once delivery语义.</p><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote><p><a href="https://www.cnblogs.com/luxiaoxun/p/13048474.html">https://www.cnblogs.com/luxiaoxun/p/13048474.html</a></p></blockquote>]]></content>
     
