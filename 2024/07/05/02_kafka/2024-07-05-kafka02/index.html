@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://champion-yang.github.io/images/kafka/01.png">
 <meta property="article:published_time" content="2024-07-05T08:48:17.000Z">
-<meta property="article:modified_time" content="2024-07-09T08:08:51.716Z">
+<meta property="article:modified_time" content="2024-07-09T09:46:59.243Z">
 <meta property="article:author" content="Sanil">
 <meta property="article:tag" content="Kafka">
 <meta name="twitter:card" content="summary">
@@ -316,7 +316,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python-kafka"><span class="toc-number">2.</span> <span class="toc-text">python-kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-number">2.1.</span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SimplePorducer"><span class="toc-number">2.2.1.</span> <span class="toc-text">SimplePorducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KafkaProducer"><span class="toc-number">2.2.2.</span> <span class="toc-text">KafkaProducer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#kafka-%E6%B6%88%E8%B4%B9%E7%9A%84%E5%9D%91"><span class="toc-number">3.</span> <span class="toc-text">kafka 消费的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%A7%AF%E5%8E%8B%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">数据积压问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text">重复消费问题</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python-kafka"><span class="toc-number">2.</span> <span class="toc-text">python-kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-number">2.1.</span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SimplePorducer"><span class="toc-number">2.2.1.</span> <span class="toc-text">SimplePorducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KafkaProducer"><span class="toc-number">2.2.2.</span> <span class="toc-text">KafkaProducer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#kafka-%E6%B6%88%E8%B4%B9%E7%9A%84%E5%9D%91"><span class="toc-number">3.</span> <span class="toc-text">kafka 消费的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%A7%AF%E5%8E%8B%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">数据积压问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85"><span class="toc-number">3.1.1.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">3.1.2.</span> <span class="toc-text">消费者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%97%AE%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text">重复消费问题</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
@@ -360,10 +360,10 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/05/02_kafka/2024-07-05-kafka02/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 738(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.2k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
 	
 
       </div>
@@ -400,11 +400,29 @@
 <p>发送很快, 当请求变多时, 发送到列表中的数据变的无序, 不一定属于那个哪个请求的哪一次kafka发送, 因此会导致请求的数据发送到kafka变慢.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaProducer</span><br><span class="line">host = <span class="string">&#x27;10.8.100.7:9092&#x27;</span></span><br><span class="line">producer = KafkaProducer(bootstrap_servers=host)</span><br><span class="line">messages = [<span class="string">&#x27;messageA&#x27;</span>,<span class="string">&#x27;messageB&#x27;</span>]</span><br><span class="line">topic = <span class="string">&#x27;topic&#x27;</span></span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    producer.send(topic,messages)</span><br></pre></td></tr></table></figure>
 
-<h1 id="kafka-消费的坑"><a href="#kafka-消费的坑" class="headerlink" title="kafka 消费的坑"></a>kafka 消费的坑</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7314509615159885875">kafka积压类问题</a><a target="_blank" rel="noopener" href="https://juejin.cn/post/7314509615159885875">https://juejin.cn/post/7314509615159885875</a></p>
+<h1 id="kafka-消费的坑"><a href="#kafka-消费的坑" class="headerlink" title="kafka 消费的坑"></a>kafka 消费的坑</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7314509615159885875">kafka积压类问题</a><a target="_blank" rel="noopener" href="https://juejin.cn/post/7314509615159885875">https://juejin.cn/post/7314509615159885875</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/even160941/p/17010989.html">kafka如何处理大量积压消息</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/even160941/p/17010989.html">https://www.cnblogs.com/even160941/p/17010989.html</a></p>
 <h2 id="数据积压问题"><a href="#数据积压问题" class="headerlink" title="数据积压问题"></a>数据积压问题</h2><p>在大数据的场景下使用 MQ 一定会遇到数据积压的问题</p>
-<blockquote>
 <p>Kafka消息积压的问题, 核心原因是生产太快、消费太慢, 处理速度长期失衡, 从而导致消息积压(Lag)的场景, 积压到超过队列长度限制, 就会出现还未被消费的数据产生丢失的场景.</p>
-</blockquote>
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><p>生产者异常导致重复生产数据, 需要考虑代码健壮性;<br>服务器的ACK级别设置为-1, 即 <code>At Least Once</code> 可以保证数据不丢失, 但是不能保证数据不重复; </p>
+<p>处理方式:</p>
+<ol>
+<li>幂等性 <strong>Exactly Once</strong>，数据不会重复生产【0.11版本的kafka才会有的特性】</li>
+<li>优化生产逻辑，做好监控预警功能</li>
+</ol>
+<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><p>消费者业务流程复杂, 消费速率远远小于生产速录, 产生消息积压; 涉及到 IO 的交互和网络的交互, 比如数据库SQL执行慢, 调用其他系统的API慢等<br>总结有两方面原因:</p>
+<ul>
+<li>消费能力不足: 消费的慢, 逻辑问题</li>
+<li>数据处理&#x2F;拉取能力不足:(拉取数据&#x2F;处理时间 &lt; 生产速度)</li>
+</ul>
+<p>第一种处理方式:</p>
+<ol>
+<li>对partition扩容增加partition数量</li>
+<li>将消费者代码修改为多线程并发消费</li>
+<li>提高单条消息的处理速度, 如: 优化业务流程, 增加缓存, 去掉耗时操作</li>
+</ol>
+<p>第二种处理方式:</p>
+<p>max.poll.records &#x3D; 20, 而 max.poll.interval.ms &#x3D; 1000, 也就是说consumer一次最多拉取 20 条消息, 两次拉取的最长时间间隔为 1 秒.<br>也就是说消费者拉取的20条消息必须在1秒内处理完成, 紧接着拉取下一批消息. 否则, 超过1秒后, Kafka broker会认为该消费者处理太缓慢而将他踢出消费组, 从而导致消费组rebalance.<br>根据Kafka机制, 消费组rebalance过程中是不会消费消息的, 所以看到ip是B和C轮流拉取消息, 又轮流被踢出消费组, 消费组循环进行rebalance, 消费就堆积了</p>
+<p>处理方案: 消费者客户端减小 max.poll.records 或 增加 max.poll.interval.ms . RD 将 max.poll.records 设置为 1, 重启消费者后消费恢复</p>
 <h2 id="重复消费问题"><a href="#重复消费问题" class="headerlink" title="重复消费问题"></a>重复消费问题</h2>
       
     </div>
