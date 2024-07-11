@@ -17,24 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>探究Docker镜像 | Hexo</title>
-  <meta name="description" content="Docker镜像简单介绍 到底什么是镜像? 镜像是用来干嘛的? 镜像的构成是怎样的?   Docker镜像使用 获取镜像 查看镜像 运行镜像 删除镜像 定制镜像 构建镜像的其他方式      Docker镜像简单介绍要知道Docker镜像是怎么一回事, 得先知道Docker是怎么一回事:Docker 是一个开源的、轻量级的容器引擎, 主要运行于 Linux 和 Windows, 用于创建">
+  <title>Elasticsearch 相关概念 | Hexo</title>
+  <meta name="description" content="ES 是什么、干什么用的 分布式的搜索引擎和数据分析引擎 搜索业务, 类比于 mysql, 可以进行数据查询, 包括全文检索, 结构化检索等. 还支持部分匹配搜索, 搜索纠错, 搜索推荐等; Elasticsearch作为传统数据库的一个补充, 提供了数据库所不不能提供的很多功能 数据分析业务, 通过对数据查询的结果进行分组聚合等操作, 完成数据分析的工作   对海量数据进行近实时的处理 分布式:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="探究Docker镜像">
-<meta property="og:url" content="https://champion-yang.github.io/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/index.html">
+<meta property="og:title" content="Elasticsearch 相关概念">
+<meta property="og:url" content="https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="Docker镜像简单介绍 到底什么是镜像? 镜像是用来干嘛的? 镜像的构成是怎样的?   Docker镜像使用 获取镜像 查看镜像 运行镜像 删除镜像 定制镜像 构建镜像的其他方式      Docker镜像简单介绍要知道Docker镜像是怎么一回事, 得先知道Docker是怎么一回事:Docker 是一个开源的、轻量级的容器引擎, 主要运行于 Linux 和 Windows, 用于创建">
+<meta property="og:description" content="ES 是什么、干什么用的 分布式的搜索引擎和数据分析引擎 搜索业务, 类比于 mysql, 可以进行数据查询, 包括全文检索, 结构化检索等. 还支持部分匹配搜索, 搜索纠错, 搜索推荐等; Elasticsearch作为传统数据库的一个补充, 提供了数据库所不不能提供的很多功能 数据分析业务, 通过对数据查询的结果进行分组聚合等操作, 完成数据分析的工作   对海量数据进行近实时的处理 分布式:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://champion-yang.github.io/images/docker/image01.png">
-<meta property="og:image" content="https://champion-yang.github.io/images/docker/image02.png">
-<meta property="article:published_time" content="2024-07-02T07:32:45.000Z">
-<meta property="article:modified_time" content="2024-07-04T08:43:18.695Z">
+<meta property="article:published_time" content="2024-07-10T07:55:29.000Z">
+<meta property="article:modified_time" content="2024-07-11T03:22:58.583Z">
 <meta property="article:author" content="Sanil">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Elasticsearch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://champion-yang.github.io/images/docker/image01.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://champion-yang.github.io/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/index.html">
+  <link rel="canonical" href="https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Snail Book" type="application/atom+xml">
   
@@ -317,21 +314,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E9%95%9C%E5%83%8F%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Docker镜像简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E9%95%9C%E5%83%8F"><span class="toc-number">1.1.</span> <span class="toc-text">到底什么是镜像?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%98%AF%E7%94%A8%E6%9D%A5%E5%B9%B2%E5%98%9B%E7%9A%84"><span class="toc-number">1.2.</span> <span class="toc-text">镜像是用来干嘛的?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E6%9E%84%E6%88%90%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84"><span class="toc-number">1.3.</span> <span class="toc-text">镜像的构成是怎样的?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Docker镜像使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">2.1.</span> <span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F"><span class="toc-number">2.2.</span> <span class="toc-text">查看镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%95%9C%E5%83%8F"><span class="toc-number">2.3.</span> <span class="toc-text">运行镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-number">2.4.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E9%95%9C%E5%83%8F"><span class="toc-number">2.5.</span> <span class="toc-text">定制镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F"><span class="toc-number">2.6.</span> <span class="toc-text">构建镜像的其他方式</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ES-%E6%98%AF%E4%BB%80%E4%B9%88%E3%80%81%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">ES 是什么、干什么用的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">一些概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lucene"><span class="toc-number">3.</span> <span class="toc-text">lucene</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="toc-number">3.1.</span> <span class="toc-text">倒排索引</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-探究Docker镜像" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-03_es/2024-07-10-es概念相关" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      探究Docker镜像
+      Elasticsearch 相关概念
     </h1>
   
 
@@ -339,119 +336,84 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/" class="article-date">
-	  <time datetime="2024-07-02T07:32:45.000Z" itemprop="datePublished">2024-07-02</time>
+	<a href="/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/" class="article-date">
+	  <time datetime="2024-07-10T07:55:29.000Z" itemprop="datePublished">2024-07-10</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>►<a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%AD%98%E5%82%A8/">存储</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Docker/" rel="tag">Docker</a>
+	<a class="article-tag-link-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.7k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.4k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-<ul>
-<li><a href="#docker%E9%95%9C%E5%83%8F%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">Docker镜像简单介绍</a><ul>
-<li><a href="#%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E9%95%9C%E5%83%8F">到底什么是镜像?</a></li>
-<li><a href="#%E9%95%9C%E5%83%8F%E6%98%AF%E7%94%A8%E6%9D%A5%E5%B9%B2%E5%98%9B%E7%9A%84">镜像是用来干嘛的?</a></li>
-<li><a href="#%E9%95%9C%E5%83%8F%E7%9A%84%E6%9E%84%E6%88%90%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84">镜像的构成是怎样的?</a></li>
-</ul>
+        <h1 id="ES-是什么、干什么用的"><a href="#ES-是什么、干什么用的" class="headerlink" title="ES 是什么、干什么用的"></a>ES 是什么、干什么用的</h1><ol>
+<li>分布式的搜索引擎和数据分析引擎<ol>
+<li>搜索业务, 类比于 mysql, 可以进行数据查询, 包括全文检索, 结构化检索等. 还支持部分匹配搜索, 搜索纠错, 搜索推荐等; Elasticsearch作为传统数据库的一个补充, 提供了数据库所不不能提供的很多功能</li>
+<li>数据分析业务, 通过对数据查询的结果进行分组聚合等操作, 完成数据分析的工作</li>
+</ol>
 </li>
-<li><a href="#docker%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8">Docker镜像使用</a><ul>
-<li><a href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F">获取镜像</a></li>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F">查看镜像</a></li>
-<li><a href="#%E8%BF%90%E8%A1%8C%E9%95%9C%E5%83%8F">运行镜像</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F">删除镜像</a></li>
-<li><a href="#%E5%AE%9A%E5%88%B6%E9%95%9C%E5%83%8F">定制镜像</a></li>
-<li><a href="#%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F">构建镜像的其他方式</a></li>
-</ul>
+<li>对海量数据进行近实时的处理<ol>
+<li>分布式: ES自动可以将海量数据分散到多台服务器上去存储和检索</li>
+<li>近实时: 检索个数据要花费1小时(这就不是近实时, 是离线批处理, batch-processing); 在秒级别对数据进行搜索和分析</li>
+</ol>
 </li>
+</ol>
+<p>将全文检索(lucene)、数据分析以及分布式技术合并到一起形成了 ES.</p>
+<h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><ul>
+<li>Near Realtime(NRT)近实时: 从写入数据到数据可以被搜索到有一个小延迟(大概1秒); </li>
+<li>Cluster 集群: 通过网络, 利用软件将多台低成本的计算机的资源统一进行协调调度, 从而实现一台”超级计算机”, 由一个或多个节点组成</li>
+<li>Node 节点: 单个 es 的实例, 通常一个节点运行在一个隔离的容器或虚拟机中</li>
+<li>Document&amp;field 文档: Document相当于mysql中的一行, 是es中最小的数据单元; field 相当于mysql中的字段</li>
+<li>Index 索引: 相当于mysql中的数据库</li>
+<li>Type 类型: 一个 index 索引中可以存在多个 type, 可类比于关系型数据库中的”表”的概念, 但是这个使用的范围比较受限, 从表现形式来说, 他是在 doc 文档上通过 _type 字段来进行区分, 则不同 type 里的字段需要保持一致. 所以有说法是 _type 是 es 早期设计的缺陷. 在5.x以前的版本里边, 一个index下面是支持多个type的, 在6.x的版本里改为一个index只支持一个type, type可以自定义.7.x的版本所有的type默认为_doc(自定义type也能用, 但是会提示不推荐)</li>
+<li>shard 分片: 单台机器无法存储大量数据, es 可以将一个索引中的数据切分为多个 shard, 分布在多台服务器上存储. 有了 shard 就可以横向扩展, 存储更多数据, 让搜索和分析等操作分布到多台服务器上去执行, 提升吞吐量和性能.</li>
+<li>replica 复制集&#x2F;副本: 每个 shard 可以创建多个 replica副本.replica 可以在 shard 故障时提供备用服务, 保证数据不丢失, 多个 replica 还可以提升搜索操作的吞吐量和性能.</li>
 </ul>
-<!-- /code_chunk_output -->
+<h1 id="lucene"><a href="#lucene" class="headerlink" title="lucene"></a>lucene</h1><p>Lucene 是一个开放源码的全文检索引擎工具包, 提供了完整的查询引擎和索引引擎, 部分语种文本分析引擎, 并不是一个完整的全文检索引擎, 仅提供了全文检索引擎架构, 可以作为一个工具包结合各类插件为项目提供部分高性能的全文检索功能; 现在常用的 ElasticSearch、Solr 等全文搜索引擎均是基于 Lucene 实现的.</p>
+<h2 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h2><blockquote>
+<p>倒排索引(英语: Inverted index), 也常被称为反向索引、置入档案或反向档案, 是一种索引方法, 被用来存储在全文搜索下某个单词在一个文档或者一组文档中的存储位置的映射. 它是文档检索系统中最常用的数据结构.[维基百科]</p>
+</blockquote>
+<p><strong>正向索引:</strong> 正向索引是基于文档建立的, 它记录文档中每个单词的位置信息. 在正向索引中, 通过文档ID可以迅速找到文档中的所有单词及其位置.</p>
+<p>正向索引的示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文档1: [&quot;Elasticsearch&quot;, 位置1; &quot;is&quot;, 位置2; &quot;a&quot;, 位置3; …]</span><br><span class="line">文档2: [&quot;Elasticsearch&quot;, 位置1; &quot;allows&quot;, 位置2; &quot;you&quot;, 位置3; …]</span><br></pre></td></tr></table></figure>
 
-<h1 id="Docker镜像简单介绍"><a href="#Docker镜像简单介绍" class="headerlink" title="Docker镜像简单介绍"></a>Docker镜像简单介绍</h1><p>要知道Docker镜像是怎么一回事, 得先知道Docker是怎么一回事:<br>Docker 是一个开源的、轻量级的容器引擎, 主要运行于 Linux 和 Windows, 用于创建、管理和编排容器. 为了让应用程序既可以运行在统一主机或者集群, 又能彼此隔离, 虚拟机出现了. 但是虚拟机需要自己的操作系统, 一般体积比较庞大不好维护和升级, 所以容器出现了. 容器目的就是运行应用或者服务, 这意味着容器的镜像中必须包含应用&#x2F;服务运行所必需的操作系统和应用文件.</p>
-<p>ok, 进入主题!</p>
-<h2 id="到底什么是镜像"><a href="#到底什么是镜像" class="headerlink" title="到底什么是镜像?"></a>到底什么是镜像?</h2><p>我们都知道操作系统分为内核和用户空间, 对于 Linux 而言, 内核启动后会挂在 root 文件系统为其提供用户空间的支持. 而 Docker 镜像 就相当于一个 root 文件系统, 提供容器运行时所需的程序、库、资源、配置等文件以及运行时的参数(环境变量、用户、数据卷等).</p>
-<h2 id="镜像是用来干嘛的"><a href="#镜像是用来干嘛的" class="headerlink" title="镜像是用来干嘛的?"></a>镜像是用来干嘛的?</h2><p>docker 镜像代表了容器的文件系统里的内容, 是容器的基础, 镜像一般是通过 Dockerfile 生成的, 容器是镜像运行时的实体.</p>
-<h2 id="镜像的构成是怎样的"><a href="#镜像的构成是怎样的" class="headerlink" title="镜像的构成是怎样的?"></a>镜像的构成是怎样的?</h2><p>在 Docker 的设计上采用了 Union FS 的技术, 分层存储的架构. 所以严格意义上来讲镜像是一个虚拟的概念, 其体现并非由一个文件组成, 而是由一组文件系统组成, 或者说是由多层文件系统联合组成.<br>简单理解, docker 的镜像是分层的, 所有的镜像(除了基础镜像)都是在之前镜像的基础上加上自己这层的内容生成的.</p>
-<h1 id="Docker镜像使用"><a href="#Docker镜像使用" class="headerlink" title="Docker镜像使用"></a>Docker镜像使用</h1><h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>镜像构建完成后, 我们可以将其上传到仓库中, 供由其他服务器使用. 提供集中存储和分发镜像的服务是 Docker Registry, 官方发布的公开服务地址是 <a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a>, 国内也有云服务商发布类似公开的服务, 比如阿里云 <a target="_blank" rel="noopener" href="https://cn.aliyun.com/product/acr?source=5176.11533457&userCode=8lx5zmtu">https://cn.aliyun.com/product/acr?source=5176.11533457&amp;userCode=8lx5zmtu</a><br>除了使用公开服务外, 我们还可以在本地搭建私有的 Docker Registry.</p>
-<p>通过命令 docker pull 从仓库获取镜像, 不指定 Docker Registry 默认从 docker hub 拉取镜像. 如图我们以拉取 mysql5.6 镜像为例:</p>
-<p> <code>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</code></p>
-<p><img src="/../images/docker/image01.png" alt="image" title="xxx"></p>
-<h2 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h2><p>使用 docker image ls 命令查看所有已经下载的镜像, 如下图所示可以看到我们下载的 mysql5.6 镜像.</p>
-<p> <code>docker image ls</code></p>
-<p>通过 <code>docker image ls mysql</code> 命令可以查看指定名称的镜像</p>
-<p> <code>docker image ls mysql</code></p>
-<h2 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h2><p> <code>docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.6</code></p>
-<p>查看运行中的容器:<br> <code>docker ps</code></p>
-<p>进入容器内部:<br> <code>docker exec -it b22754ecb0a9 /bin/bash</code></p>
-<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><p> <code>docker image rm [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</code></p>
-<p>其中, &lt;镜像&gt; 可以是 镜像短 ID、镜像长 ID、镜像名 或者 镜像摘要等.<br>像其它可以承接多个实体的命令一样, 可以使用 docker image ls -q  来配合使用 docker image rm, 这样可以成批的删除希望删除的镜像.<br> <code>docker image rm $(docker image ls -q mysql)</code></p>
-<h2 id="定制镜像"><a href="#定制镜像" class="headerlink" title="定制镜像"></a>定制镜像</h2><p>镜像构建时, 会一层层构建, 前一层是后一层的基础. 每一层构建完就不会再发生改变, 后一层上的任何改变只发生在自己这一层. 比如, 删除前一层文件的操作, 实际不是真的删除前一层的文件, 而是仅在当前层标记为该文件已删除. 在最终容器运行的时候, 虽然不会看到这个文件, 但是实际上该文件会一直跟随镜像. 因此, 在构建镜像的时候, 需要额外小心, 每一层尽量只包含该层需要添加的东西, 任何额外的东西应该在该层构建结束前清理掉.<br>镜像的定制实际上就是定制每一层所添加的配置、文件. 如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本, 用这个脚本来构建、定制镜像, 那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决. 这个脚本就是 Dockerfile.</p>
-<p>以定制 nginx 镜像为例:</p>
-<ol>
-<li>在一个空白目录中，建立一个文本文件，并命名为 Dockerfile</li>
-<li>Dockerfile 内写入以下内容</li>
-</ol>
-<p><code>FROM nginx RUN echo &#39;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#39; &gt; /usr/share/nginx/html/index.html</code></p>
-<ol start="3">
-<li>构建 nginx 镜像</li>
-</ol>
-<p> <code>docker build -t nginx:v3 .</code></p>
-<ol start="4">
-<li>在 9529 端口运行 nginx 镜像</li>
-</ol>
-<p> <code>docker run --name webserver -d -p 9529:80 nginx:v3</code></p>
-<ol start="5">
-<li>开放 9529 端口可以被外部访问</li>
-</ol>
-<p> <code>iptables -I INPUT -p tcp --dport 9529 -j ACCEPT;</code></p>
-<ol start="6">
-<li>浏览器访问该地址，得到返回 “Hello, Docker!”</li>
-</ol>
-<p>在示例中, 我们编写的 Dockerfile 文件很简单, 只有两条指令::</p>
+<p><strong>倒排索引:</strong></p>
+<p>它基于单词(term)建立索引, 而不是基于文档. 这意味着, 对于文档中的每个单词, 倒排索引都会记录哪些文档包含该单词以及该单词在文档中的位置信息(通常是词频和位置).</p>
+<p>在 ES 中内置了很多的分词器, 在保存数据后, 会对数据进行分析, 生成词典, 每个单词会指向一个或多个倒排列表</p>
+<p><strong>倒排索引的结构:</strong></p>
 <ul>
-<li>FROM nginx ——&gt; 指定基础镜像, 定制镜像一定是以一个镜像为基础, 在其上进行定制. 在 Dockerfile 中 FROM 是必备的指令.</li>
-<li>RUN xxx ——&gt; RUN 指令用来执行命令行命令.</li>
+<li>词典(Term Dictionary): 包含所有单词的列表, 每个单词指向一个或多个倒排列表.</li>
+<li>倒排列表(Posting List): 对于每个单词, 包含一个列表, 其中记录了包含该单词的文档ID和该单词在文档中的位置信息.</li>
 </ul>
-<p>从对下图的分析诠释在 Dockerfile 中, 每一个指令都会建立一层的概念:<br>在 step1 中 FROM 指定拉取仓库中的 nginx 并提交了最新的一层 605c77e624dd.<br>在 step2 中 RUN 指令 开启了容器 d25b52a4b879 , 执行了 echo 的命令将银行中的内容覆盖输出到 nginx 目录下的 index.html 文件中, 然后删除了该容器 d25b52a4b879, 并最后提交了一层  b3db9b911471 .</p>
-<p><img src="/../images/docker/image02.png" alt="image" title="xxx"></p>
-<h2 id="构建镜像的其他方式"><a href="#构建镜像的其他方式" class="headerlink" title="构建镜像的其他方式"></a>构建镜像的其他方式</h2><p>除却使用 Dockerfile 生成镜像的方式, 我们还可以通过其他方式构建:</p>
-<ol>
-<li>从 rootfs 压缩包导入。</li>
-</ol>
-<p> <code>docker import [选项] &lt;文件&gt;|&lt;URL&gt;|- [&lt;仓库名&gt;[:&lt;标签&gt;]]</code></p>
-<p>压缩包可以是本地文件、远程 Web 文件, 甚至是从标准输入中得到. 压缩包将会在镜像目录展开, 并直接作为镜像第一层提交.</p>
-<ol start="2">
-<li>将构建好的 docker 镜像直接导入导出</li>
-</ol>
-<p>docker 提供了 docker save 和 docker load 命令, 用以将镜像保存为一个文件, 然后传输到另一个位置上, 再进行加载.</p>
-<p> <code>docker save nginx:v3 | gzip &gt; nginx-v3.tar.gz</code></p>
+<p>如下有两个文档:<br>文档1: “Elasticsearch is a powerful search engine.”<br>文档2: “Elasticsearch allows you to store, search, and analyze data efficiently.”</p>
+<p>ES 会构建一个词典, 包括了上述所有的单词.<br>每个单词会指向一个或多个倒排列表.</p>
+<p> <code>Elasticsearch: [文档1的ID, 位置1; 文档2的ID, 位置1]</code></p>
+<p>Lucene 全文索引的核心是基于倒排索引实现的快速索引机制.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zq99299.github.io/note-book/elasticsearch-core/">https://zq99299.github.io/note-book/elasticsearch-core/</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2393710">https://cloud.tencent.com/developer/article/2393710</a></p>
+</blockquote>
 
       
     </div>
@@ -461,7 +423,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://champion-yang.github.io/2024/07/02/%E6%8E%A2%E7%A9%B6Docker%E9%95%9C%E5%83%8F/" title="探究Docker镜像" target="_blank" rel="external">https://champion-yang.github.io/2024/07/02/探究Docker镜像/</a>
+      <a href="https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/" title="Elasticsearch 相关概念" target="_blank" rel="external">https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es概念相关/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -507,13 +469,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2024/07/04/%E6%98%8E%E6%9C%9D%E9%82%A3%E4%BA%9B%E4%BA%8B/" title="明朝那些事"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2024/07/01/Mac%20%E9%80%9A%E8%BF%87%20brew%20%E5%AE%89%E8%A3%85%20redis%EF%BC%8C%E6%90%AD%E5%BB%BA%20redis%20%E9%9B%86%E7%BE%A4/" title="Mac 通过 brew 安装 redis, 搭建 redis 集群"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/07/09/02_kafka/2027-07-09kafka05-%E5%B9%82%E7%AD%89/" title="kafka 保证数据一致性"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

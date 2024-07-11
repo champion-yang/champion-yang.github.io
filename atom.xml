@@ -6,7 +6,7 @@
   <link href="https://champion-yang.github.io/atom.xml" rel="self"/>
   
   <link href="https://champion-yang.github.io/"/>
-  <updated>2024-07-09T09:53:03.623Z</updated>
+  <updated>2024-07-11T03:22:58.583Z</updated>
   <id>https://champion-yang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Elasticsearch 相关概念</title>
+    <link href="https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/"/>
+    <id>https://champion-yang.github.io/2024/07/10/03_es/2024-07-10-es%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/</id>
+    <published>2024-07-10T07:55:29.000Z</published>
+    <updated>2024-07-11T03:22:58.583Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ES-是什么、干什么用的"><a href="#ES-是什么、干什么用的" class="headerlink" title="ES 是什么、干什么用的"></a>ES 是什么、干什么用的</h1><ol><li>分布式的搜索引擎和数据分析引擎<ol><li>搜索业务, 类比于 mysql, 可以进行数据查询, 包括全文检索, 结构化检索等. 还支持部分匹配搜索, 搜索纠错, 搜索推荐等; Elasticsearch作为传统数据库的一个补充, 提供了数据库所不不能提供的很多功能</li><li>数据分析业务, 通过对数据查询的结果进行分组聚合等操作, 完成数据分析的工作</li></ol></li><li>对海量数据进行近实时的处理<ol><li>分布式: ES自动可以将海量数据分散到多台服务器上去存储和检索</li><li>近实时: 检索个数据要花费1小时(这就不是近实时, 是离线批处理, batch-processing); 在秒级别对数据进行搜索和分析</li></ol></li></ol><p>将全文检索(lucene)、数据分析以及分布式技术合并到一起形成了 ES.</p><h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><ul><li>Near Realtime(NRT)近实时: 从写入数据到数据可以被搜索到有一个小延迟(大概1秒); </li><li>Cluster 集群: 通过网络, 利用软件将多台低成本的计算机的资源统一进行协调调度, 从而实现一台”超级计算机”, 由一个或多个节点组成</li><li>Node 节点: 单个 es 的实例, 通常一个节点运行在一个隔离的容器或虚拟机中</li><li>Document&amp;field 文档: Document相当于mysql中的一行, 是es中最小的数据单元; field 相当于mysql中的字段</li><li>Index 索引: 相当于mysql中的数据库</li><li>Type 类型: 一个 index 索引中可以存在多个 type, 可类比于关系型数据库中的”表”的概念, 但是这个使用的范围比较受限, 从表现形式来说, 他是在 doc 文档上通过 _type 字段来进行区分, 则不同 type 里的字段需要保持一致. 所以有说法是 _type 是 es 早期设计的缺陷. 在5.x以前的版本里边, 一个index下面是支持多个type的, 在6.x的版本里改为一个index只支持一个type, type可以自定义.7.x的版本所有的type默认为_doc(自定义type也能用, 但是会提示不推荐)</li><li>shard 分片: 单台机器无法存储大量数据, es 可以将一个索引中的数据切分为多个 shard, 分布在多台服务器上存储. 有了 shard 就可以横向扩展, 存储更多数据, 让搜索和分析等操作分布到多台服务器上去执行, 提升吞吐量和性能.</li><li>replica 复制集&#x2F;副本: 每个 shard 可以创建多个 replica副本.replica 可以在 shard 故障时提供备用服务, 保证数据不丢失, 多个 replica 还可以提升搜索操作的吞吐量和性能.</li></ul><h1 id="lucene"><a href="#lucene" class="headerlink" title="lucene"></a>lucene</h1><p>Lucene 是一个开放源码的全文检索引擎工具包, 提供了完整的查询引擎和索引引擎, 部分语种文本分析引擎, 并不是一个完整的全文检索引擎, 仅提供了全文检索引擎架构, 可以作为一个工具包结合各类插件为项目提供部分高性能的全文检索功能; 现在常用的 ElasticSearch、Solr 等全文搜索引擎均是基于 Lucene 实现的.</p><h2 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h2><blockquote><p>倒排索引(英语: Inverted index), 也常被称为反向索引、置入档案或反向档案, 是一种索引方法, 被用来存储在全文搜索下某个单词在一个文档或者一组文档中的存储位置的映射. 它是文档检索系统中最常用的数据结构.[维基百科]</p></blockquote><p><strong>正向索引:</strong> 正向索引是基于文档建立的, 它记录文档中每个单词的位置信息. 在正向索引中, 通过文档ID可以迅速找到文档中的所有单词及其位置.</p><p>正向索引的示例:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">文档1: [&quot;Elasticsearch&quot;, 位置1; &quot;is&quot;, 位置2; &quot;a&quot;, 位置3; …]</span><br><span class="line">文档2: [&quot;Elasticsearch&quot;, 位置1; &quot;allows&quot;, 位置2; &quot;you&quot;, 位置3; …]</span><br></pre></td></tr></table></figure><p><strong>倒排索引:</strong></p><p>它基于单词(term)建立索引, 而不是基于文档. 这意味着, 对于文档中的每个单词, 倒排索引都会记录哪些文档包含该单词以及该单词在文档中的位置信息(通常是词频和位置).</p><p>在 ES 中内置了很多的分词器, 在保存数据后, 会对数据进行分析, 生成词典, 每个单词会指向一个或多个倒排列表</p><p><strong>倒排索引的结构:</strong></p><ul><li>词典(Term Dictionary): 包含所有单词的列表, 每个单词指向一个或多个倒排列表.</li><li>倒排列表(Posting List): 对于每个单词, 包含一个列表, 其中记录了包含该单词的文档ID和该单词在文档中的位置信息.</li></ul><p>如下有两个文档:<br>文档1: “Elasticsearch is a powerful search engine.”<br>文档2: “Elasticsearch allows you to store, search, and analyze data efficiently.”</p><p>ES 会构建一个词典, 包括了上述所有的单词.<br>每个单词会指向一个或多个倒排列表.</p><p> <code>Elasticsearch: [文档1的ID, 位置1; 文档2的ID, 位置1]</code></p><p>Lucene 全文索引的核心是基于倒排索引实现的快速索引机制.</p><blockquote><p><a href="https://zq99299.github.io/note-book/elasticsearch-core/">https://zq99299.github.io/note-book/elasticsearch-core/</a><br><a href="https://cloud.tencent.com/developer/article/2393710">https://cloud.tencent.com/developer/article/2393710</a></p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;ES-是什么、干什么用的&quot;&gt;&lt;a href=&quot;#ES-是什么、干什么用的&quot; class=&quot;headerlink&quot; title=&quot;ES 是什么、干什么用的&quot;&gt;&lt;/a&gt;ES 是什么、干什么用的&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;分布式的搜索引擎和数据分析引擎&lt;ol&gt;
+&lt;li&gt;</summary>
+      
+    
+    
+    
+    <category term="大数据" scheme="https://champion-yang.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    <category term="存储" scheme="https://champion-yang.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%AD%98%E5%82%A8/"/>
+    
+    
+    <category term="Elasticsearch" scheme="https://champion-yang.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title>kafka 保证数据一致性</title>
