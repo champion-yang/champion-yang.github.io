@@ -17,21 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>kafka 常用命令 | Hexo</title>
-  <meta name="description" content="查看所有 topic  .&#x2F;kafka-topics.sh --zookeeper&#x3D;10.5.208.13:2181 --list  创建topic——注意: 必须指定分区和副本, 否则会报错; 不同的版本需要指定的参数不同; Replication 不能超过 brokers 数量  bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181 -">
+  <title>01信息化发展 | Hexo</title>
+  <meta name="description" content="信息化发展信息与信息化信息的特征客观、普遍、无限、动态、相对、依附、变换、传递、层次、系统、转化 信息的质量精确、完整、可报、及时、经济、可验证、安全 信息具有价值, 价值由质量决定 信息系统生命周期(类比软件生命周期)简化为: - 立项【规划】 - 开发【分析、设计、实施】 - 运维 - 消亡   系统规划(可行性分析与项目开发计划)  系统建设的必要性和可能性  可行性研究报告  系统设计任">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kafka 常用命令">
-<meta property="og:url" content="https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:title" content="01信息化发展">
+<meta property="og:url" content="https://champion-yang.github.io/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/index.html">
 <meta property="og:site_name" content="Snail Book">
-<meta property="og:description" content="查看所有 topic  .&#x2F;kafka-topics.sh --zookeeper&#x3D;10.5.208.13:2181 --list  创建topic——注意: 必须指定分区和副本, 否则会报错; 不同的版本需要指定的参数不同; Replication 不能超过 brokers 数量  bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181 -">
+<meta property="og:description" content="信息化发展信息与信息化信息的特征客观、普遍、无限、动态、相对、依附、变换、传递、层次、系统、转化 信息的质量精确、完整、可报、及时、经济、可验证、安全 信息具有价值, 价值由质量决定 信息系统生命周期(类比软件生命周期)简化为: - 立项【规划】 - 开发【分析、设计、实施】 - 运维 - 消亡   系统规划(可行性分析与项目开发计划)  系统建设的必要性和可能性  可行性研究报告  系统设计任">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-08T06:33:09.000Z">
-<meta property="article:modified_time" content="2024-07-09T07:02:07.205Z">
+<meta property="og:image" content="https://champion-yang.github.io/images/ruankao/01-%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95.png">
+<meta property="article:published_time" content="2024-07-16T08:48:44.000Z">
+<meta property="article:modified_time" content="2024-07-16T10:49:58.342Z">
 <meta property="article:author" content="Sanil">
-<meta property="article:tag" content="Kafka">
+<meta property="article:tag" content="软考">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://champion-yang.github.io/images/ruankao/01-%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/index.html">
+  <link rel="canonical" href="https://champion-yang.github.io/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Snail Book" type="application/atom+xml">
   
@@ -314,21 +316,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95"><span class="toc-number">1.</span> <span class="toc-text">信息化发展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">信息与信息化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">信息的特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E8%B4%A8%E9%87%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">信息的质量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E7%B1%BB%E6%AF%94%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">信息系统生命周期(类比软件生命周期)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6%E4%BF%A1%E6%81%AF%E5%8C%96%E4%BD%93%E7%B3%BB"><span class="toc-number">1.1.4.</span> <span class="toc-text">国家信息化体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6%E4%BF%A1%E6%81%AF%E5%8C%96%E4%BD%93%E7%B3%BB-%E5%8D%81%E5%9B%9B%E4%BA%94"><span class="toc-number">1.1.5.</span> <span class="toc-text">国家信息化体系(十四五)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="toc-number">1.2.</span> <span class="toc-text">现代化基础设施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%9F%BA%E5%BB%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">新基建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-number">1.2.2.</span> <span class="toc-text">工业互联网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82%E7%89%A9%E8%81%94%E7%BD%91"><span class="toc-number">1.2.3.</span> <span class="toc-text">城市物联网</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E4%B8%9A%E7%8E%B0%E4%BB%A3%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">产业现代化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%9C%E4%B8%9A%E5%86%9C%E6%9D%91%E7%8E%B0%E4%BB%A3%E5%8C%96"><span class="toc-number">1.3.1.</span> <span class="toc-text">农业农村现代化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%8E%B0%E4%BB%A3%E5%8C%96"><span class="toc-number">1.3.2.</span> <span class="toc-text">工业现代化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%8E%B0%E4%BB%A3%E5%8C%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">服务现代化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD"><span class="toc-number">1.4.</span> <span class="toc-text">数字中国</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%BB%8F%E6%B5%8E"><span class="toc-number">1.4.1.</span> <span class="toc-text">数字经济</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C"><span class="toc-number">1.4.2.</span> <span class="toc-text">数字政府</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%A4%BE%E4%BC%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">数字社会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%94%9F%E6%80%81"><span class="toc-number">1.4.4.</span> <span class="toc-text">数字生态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%8C%96%E8%BD%AC%E5%9E%8B%E4%B8%8E%E5%85%83%E5%AE%87%E5%AE%99"><span class="toc-number">1.5.</span> <span class="toc-text">数字化转型与元宇宙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E5%AE%87%E5%AE%99"><span class="toc-number">1.5.1.</span> <span class="toc-text">元宇宙</span></a></li></ol></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-02_kafka/2024-07-08-kafka03命令" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-05_软考/01_中项/01信息化发展" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      kafka 常用命令
+      01信息化发展
     </h1>
   
 
@@ -336,94 +338,216 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/" class="article-date">
-	  <time datetime="2024-07-08T06:33:09.000Z" itemprop="datePublished">2024-07-08</time>
+	<a href="/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/" class="article-date">
+	  <time datetime="2024-07-16T08:48:44.000Z" itemprop="datePublished">2024-07-16</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    <a class="article-category-link" href="/categories/%E8%BD%AF%E8%80%83/">软考</a>►<a class="article-category-link" href="/categories/%E8%BD%AF%E8%80%83/%E4%B8%AD%E9%A1%B9/">中项</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Kafka/" rel="tag">Kafka</a>
+	<a class="article-tag-link-link" href="/tags/%E8%BD%AF%E8%80%83/" rel="tag">软考</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 328(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 694(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p><strong>查看所有 topic</strong></p>
+        <p><img src="/../../../images/ruankao/01-%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95.png" alt="img"></p>
+<h1 id="信息化发展"><a href="#信息化发展" class="headerlink" title="信息化发展"></a>信息化发展</h1><h2 id="信息与信息化"><a href="#信息与信息化" class="headerlink" title="信息与信息化"></a>信息与信息化</h2><h3 id="信息的特征"><a href="#信息的特征" class="headerlink" title="信息的特征"></a>信息的特征</h3><p>客观、普遍、无限、动态、相对、依附、变换、传递、层次、系统、转化</p>
+<h3 id="信息的质量"><a href="#信息的质量" class="headerlink" title="信息的质量"></a>信息的质量</h3><p>精确、完整、可报、及时、经济、可验证、安全</p>
+<p>信息具有价值, 价值由质量决定</p>
+<h3 id="信息系统生命周期-类比软件生命周期"><a href="#信息系统生命周期-类比软件生命周期" class="headerlink" title="信息系统生命周期(类比软件生命周期)"></a>信息系统生命周期(类比软件生命周期)</h3><p><strong>简化为:</strong></p>
+<pre><code>- 立项【规划】
+- 开发【分析、设计、实施】
+- 运维
+- 消亡
+</code></pre>
+<ol>
+<li><p>系统规划(可行性分析与项目开发计划)</p>
 <ul>
-<li><code>./kafka-topics.sh --zookeeper=10.5.208.13:2181 --list</code></li>
-</ul>
-<p><strong>创建topic——注意: 必须指定分区和副本, 否则会报错; 不同的版本需要指定的参数不同; Replication 不能超过 brokers 数量</strong></p>
+<li><p>系统建设的必要性和可能性</p>
+</li>
+<li><p>可行性研究报告</p>
+</li>
+<li><p>系统设计任务书</p>
 <ul>
-<li><code>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic testA</code></li>
-<li><code>bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 3 --partitions 3 --topic testA</code></li>
-</ul>
-<p><strong>删除topic</strong></p>
-<ul>
-<li><code>./kafka-topics.sh --zookeeper=10.5.208.13:2181 --topic xxx --delete</code></li>
-</ul>
-<p><strong>查看topic属性</strong></p>
-<ul>
-<li><code>./kafka-topics.sh --describe --zookeeper=10.5.208.13:2181 --topic xxx</code></li>
-</ul>
-<p><strong>topic增加分区</strong></p>
-<ul>
-<li><code>./kafka-topics.sh --alter --zookeeper=10.5.208.13:2181 --topic xxx --partitions 10</code><blockquote>
-<p>分区数增加到10个, 如果topic的分区增加, 则分区逻辑或消息顺序将受到影响, 会引起rebalance操作</p>
-</blockquote>
+<li><p>系统建设方案</p>
+</li>
+<li><p>实施计划</p>
 </li>
 </ul>
-<p><strong>生产数据</strong></p>
-<ul>
-<li><code>./kafka-console-producer.sh --broker-list localhost:9092 --topic TCP_6666</code></li>
-</ul>
-<p><strong>消费数据</strong></p>
-<ul>
-<li><code>./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first --from-beginning</code></li>
-</ul>
-<p><strong>重置偏移量</strong></p>
-<ul>
-<li><code>./kafka-consumer-groups.sh --bootstrap-server=10.5.208.13:9092 --execute --reset-offsets --topic=xxx --group=testPlatform-local-pha  --to-earliest</code></li>
-</ul>
-<p><strong>显示所有消费者</strong></p>
-<ul>
-<li><code>./kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list</code></li>
-</ul>
-<p><strong>查看Broker磁盘信息kafka-log-dirs.sh</strong></p>
-<ul>
-<li><p><code>/home/master/kafka/bin/kafka-log-dirs.sh --bootstrap-server localhost:9092 --describe --topic-list vuln</code></p>
-</li>
-<li><p><code>/home/master/kafka/bin/kafka-configs.sh --list --bootstrap-server localhost:9092</code></p>
-</li>
-<li><p><code>/home/master/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic vuln</code></p>
 </li>
 </ul>
-<p><strong>查询 kafka 消费者组的信息</strong></p>
-<ul>
-<li><p><code>kafka=/home/master/kafka/</code></p>
 </li>
-<li><p><code>$kafka/bin/kafka-consumer-groups.sh --bootstrap-server=localhost:9092 --describe --group &quot;groupName&quot;</code></p>
+<li><p>系统分析(需求分析)</p>
+<ul>
+<li><p>逻辑设计阶段, 输出系统说明书, 和用户确认需求的基础</p>
+</li>
+<li><p>系统设计和验收的依据</p>
 </li>
 </ul>
+</li>
+<li><p>系统设计(概要设计、详细设计)</p>
+<ul>
+<li><p>解决”怎么做”的问题, 物理模型</p>
+</li>
+<li><p>设计材料</p>
+</li>
+</ul>
+</li>
+<li><p>系统实施(编码、测试)</p>
+</li>
+<li><p>系统运行和维护(维护)</p>
+</li>
+</ol>
+<h3 id="国家信息化体系"><a href="#国家信息化体系" class="headerlink" title="国家信息化体系"></a>国家信息化体系</h3><table>
+<thead>
+<tr>
+<th>内容</th>
+<th>地位</th>
+<th>速记</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>信息资源</td>
+<td>核心任务</td>
+<td>资源任务</td>
+</tr>
+<tr>
+<td>信息网络</td>
+<td>基础设施</td>
+<td>网络基础</td>
+</tr>
+<tr>
+<td>信息技术应用</td>
+<td>龙头</td>
+<td>应用龙头</td>
+</tr>
+<tr>
+<td>信息技术和产业</td>
+<td>物质基础</td>
+<td>技术产业为物基</td>
+</tr>
+<tr>
+<td>信息化人才</td>
+<td>成功之本</td>
+<td>人本</td>
+</tr>
+<tr>
+<td>政策法规和标准规范</td>
+<td>保障</td>
+<td>规保</td>
+</tr>
+</tbody></table>
+<h3 id="国家信息化体系-十四五"><a href="#国家信息化体系-十四五" class="headerlink" title="国家信息化体系(十四五)"></a>国家信息化体系(十四五)</h3><p>数据治理</p>
+<p>密码区块链</p>
+<p>信息互联互通</p>
+<p>智能网联</p>
+<p>网络安全</p>
+<h2 id="现代化基础设施"><a href="#现代化基础设施" class="headerlink" title="现代化基础设施"></a>现代化基础设施</h2><h3 id="新基建"><a href="#新基建" class="headerlink" title="新基建"></a>新基建</h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>内容</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>信息基础设施</td>
+<td>通、新、算</td>
+<td>技术新</td>
+</tr>
+<tr>
+<td>融合基础设施</td>
+<td>利用大数据、人工智能支持传统设施转型</td>
+<td>应用新</td>
+</tr>
+<tr>
+<td>创新技术设施</td>
+<td>科研开发等公益属性</td>
+<td>平台新</td>
+</tr>
+</tbody></table>
+<h3 id="工业互联网"><a href="#工业互联网" class="headerlink" title="工业互联网"></a>工业互联网</h3><p>网络为基础、平台为中枢、数据为要素、安全为保障</p>
+<h3 id="城市物联网"><a href="#城市物联网" class="headerlink" title="城市物联网"></a>城市物联网</h3><p>智慧物流、交通、安防、能源环保、医疗、建筑、家居、零售</p>
+<h2 id="产业现代化"><a href="#产业现代化" class="headerlink" title="产业现代化"></a>产业现代化</h2><h3 id="农业农村现代化"><a href="#农业农村现代化" class="headerlink" title="农业农村现代化"></a>农业农村现代化</h3><p>加强基础设施建设</p>
+<p>发展智慧农业</p>
+<p>建设数字乡村</p>
+<h3 id="工业现代化"><a href="#工业现代化" class="headerlink" title="工业现代化"></a>工业现代化</h3><p>信息化和工业化结合</p>
+<ul>
+<li>技术融合、产品融合、业务融合、产业衍生</li>
+</ul>
+<p>智能制造</p>
+<ul>
+<li>能力成熟度模型<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>内容</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一级</td>
+<td>规划</td>
+<td></td>
+</tr>
+<tr>
+<td>二级</td>
+<td>规范</td>
+<td></td>
+</tr>
+<tr>
+<td>三级</td>
+<td>集成</td>
+<td>共享</td>
+</tr>
+<tr>
+<td>四级</td>
+<td>优化</td>
+<td>预测</td>
+</tr>
+<tr>
+<td>五级</td>
+<td>引领</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="服务现代化"><a href="#服务现代化" class="headerlink" title="服务现代化"></a>服务现代化</h3><p>消费互联网</p>
+<ul>
+<li>媒体属性、产业属性</li>
+</ul>
+<h2 id="数字中国"><a href="#数字中国" class="headerlink" title="数字中国"></a>数字中国</h2><h3 id="数字经济"><a href="#数字经济" class="headerlink" title="数字经济"></a>数字经济</h3><p>数字产业化</p>
+<p>产业数字化</p>
+<p>数字化治理</p>
+<p>数据价值化</p>
+<h3 id="数字政府"><a href="#数字政府" class="headerlink" title="数字政府"></a>数字政府</h3><p>一网通办</p>
+<p>跨省通办</p>
+<p>一网通管</p>
+<h3 id="数字社会"><a href="#数字社会" class="headerlink" title="数字社会"></a>数字社会</h3><h3 id="数字生态"><a href="#数字生态" class="headerlink" title="数字生态"></a>数字生态</h3><h2 id="数字化转型与元宇宙"><a href="#数字化转型与元宇宙" class="headerlink" title="数字化转型与元宇宙"></a>数字化转型与元宇宙</h2><h3 id="元宇宙"><a href="#元宇宙" class="headerlink" title="元宇宙"></a>元宇宙</h3><p>沉浸式体验</p>
+<p>虚拟身份</p>
+<p>虚拟经济</p>
+<p>虚拟社会治理</p>
 
       
     </div>
@@ -433,7 +557,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03%E5%91%BD%E4%BB%A4/" title="kafka 常用命令" target="_blank" rel="external">https://champion-yang.github.io/2024/07/08/02_kafka/2024-07-08-kafka03命令/</a>
+      <a href="https://champion-yang.github.io/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/" title="01信息化发展" target="_blank" rel="external">https://champion-yang.github.io/2024/07/16/05_软考/01_中项/01信息化发展/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -479,13 +603,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2024/07/09/02_kafka/2027-07-09kafka04-kafka%E7%9A%84%E6%B6%88%E8%B4%B9%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="kafka的消费分区分配策略"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2024/07/08/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" title="python虚拟环境"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/07/11/03_es/2024-07-11-escrud/" title="Elasticsearch 操作API"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

@@ -6,7 +6,7 @@
   <link href="https://champion-yang.github.io/atom.xml" rel="self"/>
   
   <link href="https://champion-yang.github.io/"/>
-  <updated>2024-07-11T03:22:58.583Z</updated>
+  <updated>2024-07-16T10:49:58.342Z</updated>
   <id>https://champion-yang.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>01信息化发展</title>
+    <link href="https://champion-yang.github.io/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/"/>
+    <id>https://champion-yang.github.io/2024/07/16/05_%E8%BD%AF%E8%80%83/01_%E4%B8%AD%E9%A1%B9/01%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95/</id>
+    <published>2024-07-16T08:48:44.000Z</published>
+    <updated>2024-07-16T10:49:58.342Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/../../../images/ruankao/01-%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95.png" alt="img"></p><h1 id="信息化发展"><a href="#信息化发展" class="headerlink" title="信息化发展"></a>信息化发展</h1><h2 id="信息与信息化"><a href="#信息与信息化" class="headerlink" title="信息与信息化"></a>信息与信息化</h2><h3 id="信息的特征"><a href="#信息的特征" class="headerlink" title="信息的特征"></a>信息的特征</h3><p>客观、普遍、无限、动态、相对、依附、变换、传递、层次、系统、转化</p><h3 id="信息的质量"><a href="#信息的质量" class="headerlink" title="信息的质量"></a>信息的质量</h3><p>精确、完整、可报、及时、经济、可验证、安全</p><p>信息具有价值, 价值由质量决定</p><h3 id="信息系统生命周期-类比软件生命周期"><a href="#信息系统生命周期-类比软件生命周期" class="headerlink" title="信息系统生命周期(类比软件生命周期)"></a>信息系统生命周期(类比软件生命周期)</h3><p><strong>简化为:</strong></p><pre><code>- 立项【规划】- 开发【分析、设计、实施】- 运维- 消亡</code></pre><ol><li><p>系统规划(可行性分析与项目开发计划)</p><ul><li><p>系统建设的必要性和可能性</p></li><li><p>可行性研究报告</p></li><li><p>系统设计任务书</p><ul><li><p>系统建设方案</p></li><li><p>实施计划</p></li></ul></li></ul></li><li><p>系统分析(需求分析)</p><ul><li><p>逻辑设计阶段, 输出系统说明书, 和用户确认需求的基础</p></li><li><p>系统设计和验收的依据</p></li></ul></li><li><p>系统设计(概要设计、详细设计)</p><ul><li><p>解决”怎么做”的问题, 物理模型</p></li><li><p>设计材料</p></li></ul></li><li><p>系统实施(编码、测试)</p></li><li><p>系统运行和维护(维护)</p></li></ol><h3 id="国家信息化体系"><a href="#国家信息化体系" class="headerlink" title="国家信息化体系"></a>国家信息化体系</h3><table><thead><tr><th>内容</th><th>地位</th><th>速记</th></tr></thead><tbody><tr><td>信息资源</td><td>核心任务</td><td>资源任务</td></tr><tr><td>信息网络</td><td>基础设施</td><td>网络基础</td></tr><tr><td>信息技术应用</td><td>龙头</td><td>应用龙头</td></tr><tr><td>信息技术和产业</td><td>物质基础</td><td>技术产业为物基</td></tr><tr><td>信息化人才</td><td>成功之本</td><td>人本</td></tr><tr><td>政策法规和标准规范</td><td>保障</td><td>规保</td></tr></tbody></table><h3 id="国家信息化体系-十四五"><a href="#国家信息化体系-十四五" class="headerlink" title="国家信息化体系(十四五)"></a>国家信息化体系(十四五)</h3><p>数据治理</p><p>密码区块链</p><p>信息互联互通</p><p>智能网联</p><p>网络安全</p><h2 id="现代化基础设施"><a href="#现代化基础设施" class="headerlink" title="现代化基础设施"></a>现代化基础设施</h2><h3 id="新基建"><a href="#新基建" class="headerlink" title="新基建"></a>新基建</h3><table><thead><tr><th>分类</th><th>内容</th><th>特点</th></tr></thead><tbody><tr><td>信息基础设施</td><td>通、新、算</td><td>技术新</td></tr><tr><td>融合基础设施</td><td>利用大数据、人工智能支持传统设施转型</td><td>应用新</td></tr><tr><td>创新技术设施</td><td>科研开发等公益属性</td><td>平台新</td></tr></tbody></table><h3 id="工业互联网"><a href="#工业互联网" class="headerlink" title="工业互联网"></a>工业互联网</h3><p>网络为基础、平台为中枢、数据为要素、安全为保障</p><h3 id="城市物联网"><a href="#城市物联网" class="headerlink" title="城市物联网"></a>城市物联网</h3><p>智慧物流、交通、安防、能源环保、医疗、建筑、家居、零售</p><h2 id="产业现代化"><a href="#产业现代化" class="headerlink" title="产业现代化"></a>产业现代化</h2><h3 id="农业农村现代化"><a href="#农业农村现代化" class="headerlink" title="农业农村现代化"></a>农业农村现代化</h3><p>加强基础设施建设</p><p>发展智慧农业</p><p>建设数字乡村</p><h3 id="工业现代化"><a href="#工业现代化" class="headerlink" title="工业现代化"></a>工业现代化</h3><p>信息化和工业化结合</p><ul><li>技术融合、产品融合、业务融合、产业衍生</li></ul><p>智能制造</p><ul><li>能力成熟度模型<table><thead><tr><th>级别</th><th>内容</th><th>特点</th></tr></thead><tbody><tr><td>一级</td><td>规划</td><td></td></tr><tr><td>二级</td><td>规范</td><td></td></tr><tr><td>三级</td><td>集成</td><td>共享</td></tr><tr><td>四级</td><td>优化</td><td>预测</td></tr><tr><td>五级</td><td>引领</td><td></td></tr></tbody></table></li></ul><h3 id="服务现代化"><a href="#服务现代化" class="headerlink" title="服务现代化"></a>服务现代化</h3><p>消费互联网</p><ul><li>媒体属性、产业属性</li></ul><h2 id="数字中国"><a href="#数字中国" class="headerlink" title="数字中国"></a>数字中国</h2><h3 id="数字经济"><a href="#数字经济" class="headerlink" title="数字经济"></a>数字经济</h3><p>数字产业化</p><p>产业数字化</p><p>数字化治理</p><p>数据价值化</p><h3 id="数字政府"><a href="#数字政府" class="headerlink" title="数字政府"></a>数字政府</h3><p>一网通办</p><p>跨省通办</p><p>一网通管</p><h3 id="数字社会"><a href="#数字社会" class="headerlink" title="数字社会"></a>数字社会</h3><h3 id="数字生态"><a href="#数字生态" class="headerlink" title="数字生态"></a>数字生态</h3><h2 id="数字化转型与元宇宙"><a href="#数字化转型与元宇宙" class="headerlink" title="数字化转型与元宇宙"></a>数字化转型与元宇宙</h2><h3 id="元宇宙"><a href="#元宇宙" class="headerlink" title="元宇宙"></a>元宇宙</h3><p>沉浸式体验</p><p>虚拟身份</p><p>虚拟经济</p><p>虚拟社会治理</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/../../../images/ruankao/01-%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;信息化发展&quot;&gt;&lt;a href=&quot;#信息化发展&quot; c</summary>
+      
+    
+    
+    
+    <category term="软考" scheme="https://champion-yang.github.io/categories/%E8%BD%AF%E8%80%83/"/>
+    
+    <category term="中项" scheme="https://champion-yang.github.io/categories/%E8%BD%AF%E8%80%83/%E4%B8%AD%E9%A1%B9/"/>
+    
+    
+    <category term="软考" scheme="https://champion-yang.github.io/tags/%E8%BD%AF%E8%80%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch 操作API</title>
+    <link href="https://champion-yang.github.io/2024/07/11/03_es/2024-07-11-escrud/"/>
+    <id>https://champion-yang.github.io/2024/07/11/03_es/2024-07-11-escrud/</id>
+    <published>2024-07-11T07:55:29.000Z</published>
+    <updated>2024-07-11T08:34:32.447Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><h2 id="集群健康状态"><a href="#集群健康状态" class="headerlink" title="集群健康状态"></a>集群健康状态</h2><p> <code>GET /_cat/health?v</code></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;epoch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1720686430&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;08:27:10&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;cluster&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ISOP_1713495047759&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;yellow&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;node.total&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;node.data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;shards&quot;</span><span class="punctuation">:</span> <span class="string">&quot;75&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;pri&quot;</span><span class="punctuation">:</span> <span class="string">&quot;75&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;relo&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;init&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;unassign&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;pending_tasks&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;max_task_wait_time&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;active_shards_percent&quot;</span><span class="punctuation">:</span> <span class="string">&quot;98.7%&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><table><thead><tr><th>title</th><th>title</th><th>title</th></tr></thead><tbody><tr><td>conte</td><td>conte</td><td>conte</td></tr></tbody></table><h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><h2 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html</a></p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;集群&quot;&gt;&lt;a href=&quot;#集群&quot; class=&quot;headerlink&quot; title=&quot;集群&quot;&gt;&lt;/a&gt;集群&lt;/h1&gt;&lt;h2 id=&quot;集群健康状态&quot;&gt;&lt;a href=&quot;#集群健康状态&quot; class=&quot;headerlink&quot; title=&quot;集群健康状态&quot;&gt;&lt;/a&gt;集</summary>
+      
+    
+    
+    
+    <category term="大数据" scheme="https://champion-yang.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    <category term="存储" scheme="https://champion-yang.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%AD%98%E5%82%A8/"/>
+    
+    
+    <category term="Elasticsearch" scheme="https://champion-yang.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title>Elasticsearch 相关概念</title>
